@@ -1,36 +1,73 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# AUDACITY Landing Page
 
-## Getting Started
+Landing page moderna para AUDACITY, una herramienta de reclutamiento con IA.
 
-First, run the development server:
+## 🚀 Tecnologías
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+- **Next.js 16** (App Router)
+- **TypeScript**
+- **TailwindCSS**
+- **framer-motion** (animaciones)
+- **shadcn/ui** (componentes UI)
+
+## 📁 Estructura del Proyecto
+
+```
+audacity_website_v4/
+├── app/
+│   ├── layout.tsx          # Layout principal con ModeProvider
+│   ├── page.tsx            # Página principal
+│   └── globals.css         # Estilos globales
+├── components/
+│   ├── Header.tsx          # Header con toggle Company/Candidate
+│   ├── Hero.tsx            # Sección hero con contenido dinámico
+│   └── ui/                 # Componentes shadcn/ui
+│       └── button.tsx
+├── contexts/
+│   └── ModeContext.tsx     # Contexto para modo Company/Candidate
+└── lib/
+    └── utils.ts            # Utilidades (cn helper)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Modos
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+El sitio tiene dos modos que cambian el contenido y los colores de acento:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Company Mode** (por defecto): Azul (#3B82F6)
+- **Candidate Mode**: Verde (#10B981)
 
-## Learn More
+## 🛠️ Desarrollo
 
-To learn more about Next.js, take a look at the following resources:
+```bash
+# Instalar dependencias
+npm install
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+# Ejecutar servidor de desarrollo
+npm run dev
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+# Build de producción
+npm run build
 
-## Deploy on Vercel
+# Iniciar servidor de producción
+npm start
+```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ✨ Características Implementadas
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+- ✅ Sistema de modo Company/Candidate con React Context
+- ✅ Header con toggle de modo y glassmorphism
+- ✅ Hero section con contenido dinámico según modo
+- ✅ Animaciones con framer-motion
+- ✅ Diseño responsive
+- ✅ Fondo azul oscuro con gradientes
+- ✅ Efectos glassmorphism
+
+## 📝 Próximos Pasos
+
+- [ ] Sección de logos
+- [ ] Value props
+- [ ] Matchmaking
+- [ ] How it works
+- [ ] Testimonials
+- [ ] FAQ
+- [ ] Footer
