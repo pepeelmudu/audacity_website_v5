@@ -45,7 +45,7 @@ export function Header() {
             }}
             onMouseEnter={(e) => {
               if (mode === "company") {
-                e.currentTarget.style.backgroundColor = mode === "company" ? "#059669" : accentColor;
+                e.currentTarget.style.backgroundColor = mode === "company" ? "#44e690" : accentColor;
               } else {
                 e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
               }
@@ -70,7 +70,7 @@ export function Header() {
             }}
             onMouseEnter={(e) => {
               if (mode === "candidate") {
-                e.currentTarget.style.backgroundColor = mode === "candidate" ? "#ea580c" : accentColor;
+                e.currentTarget.style.backgroundColor = mode === "candidate" ? "#f2376c" : accentColor;
               } else {
                 e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
               }

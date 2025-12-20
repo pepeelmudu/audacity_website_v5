@@ -16,7 +16,7 @@ export function ModeProvider({ children }: { children: ReactNode }) {
   const [mode, setMode] = useState<Mode>("company");
 
   // Colores de acento según el modo
-  const accentColor = mode === "company" ? "#10B981" : "#F97316"; // Verde brillante para Company, Naranja para Candidate
+  const accentColor = mode === "company" ? "#44e690" : "#f2376c"; // Verde brillante para Company, Naranja para Candidate
 
   return (
     <ModeContext.Provider value={{ mode, setMode, accentColor }}>

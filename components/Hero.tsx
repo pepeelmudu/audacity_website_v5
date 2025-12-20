@@ -3,6 +3,7 @@
 import { useMode } from "@/contexts/ModeContext";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
+import { CompaniesBar } from "@/components/CompaniesBar";
 
 export function Hero() {
   const { mode, accentColor } = useMode();
@@ -13,7 +14,7 @@ export function Hero() {
       : "Elite Opportunities Don't Wait. They Find You.";
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-start pt-20 sm:pt-24 px-4 sm:px-6 lg:px-8 overflow-hidden">
+    <section className="relative min-h-screen flex flex-col items-center justify-start pt-20 sm:pt-24 px-4 sm:px-6 lg:px-8 overflow-hidden pb-0">
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -169,7 +170,7 @@ export function Hero() {
                 backgroundColor: accentColor,
               }}
               onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = mode === "company" ? "#059669" : "#ea580c";
+                e.currentTarget.style.backgroundColor = mode === "company" ? "#44e690" : "#f2376c";
               }}
               onMouseLeave={(e) => {
                 e.currentTarget.style.backgroundColor = accentColor;
@@ -179,6 +180,11 @@ export function Hero() {
             </Button>
           </div>
         </div>
+      </div>
+      
+      {/* Companies Bar - positioned at bottom */}
+      <div className="absolute bottom-0 left-0 right-0 z-10">
+        <CompaniesBar />
       </div>
     </section>
   );
