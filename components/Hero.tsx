@@ -60,7 +60,7 @@ export function Hero() {
         </div>
 
         {/* Main Title */}
-        <h1 className="text-3xl sm:text-4xl lg:text-5xl xl:text-6xl font-bold text-white text-center mb-4 leading-[1.1]">
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl xl:text-5xl font-normal text-white text-center mb-4 leading-[1.1]" style={{ fontFamily: 'var(--font-beltram-medium)' }}>
           Talent Engine for
           <br />
           Exceptional Humans
@@ -68,10 +68,10 @@ export function Hero() {
 
         {/* Subtitle */}
         <div className="text-center mb-10 sm:mb-12">
-          <p className="text-lg sm:text-xl lg:text-2xl text-white leading-tight">
+          <p className="text-base sm:text-lg lg:text-xl text-white leading-tight">
             {subtitleText.split(". ")[0]}.
           </p>
-          <p className="text-lg sm:text-xl lg:text-2xl text-white leading-tight">
+          <p className="text-base sm:text-lg lg:text-xl text-white leading-tight">
             {subtitleText.split(". ")[1]}
           </p>
         </div>
