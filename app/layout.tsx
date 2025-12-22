@@ -14,9 +14,21 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const beltramTest = localFont({
+const beltramRegular = localFont({
+  src: "../fonts/beltram/BeltramTest-Regular.otf",
+  variable: "--font-beltram-regular",
+  display: "swap",
+});
+
+const beltramMedium = localFont({
   src: "../fonts/beltram/BeltramTest-Medium.otf",
   variable: "--font-beltram-medium",
+  display: "swap",
+});
+
+const beltramBlack = localFont({
+  src: "../fonts/beltram/BeltramTest-Black.otf",
+  variable: "--font-beltram-black",
   display: "swap",
 });
 
@@ -33,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${beltramTest.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${beltramRegular.variable} ${beltramMedium.variable} ${beltramBlack.variable} antialiased`}
       >
         <ModeProvider>
           {children}

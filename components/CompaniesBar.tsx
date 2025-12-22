@@ -50,7 +50,7 @@ export function CompaniesBar() {
             return (
               <div
                 key={company.name}
-                className="flex items-center justify-center opacity-80 hover:opacity-100 transition-opacity duration-300 h-full"
+                className="flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300 h-full"
               >
                 <Image
                   src={company.logo}

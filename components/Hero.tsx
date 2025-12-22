@@ -18,7 +18,7 @@ export function Hero() {
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/bg/company_bg_v5.jpg"
+          src="/bg/company_bg_v6_COMP_2.webp"
           alt="Background"
           fill
           className="object-cover rotate-180"
