@@ -11,11 +11,26 @@ export function ModeTransition() {
   const [triggerKey, setTriggerKey] = useState(0);
   const prevModeRef = useRef<string>(mode);
   const isFirstRender = useRef(true);
+  const [blockSize, setBlockSize] = useState(60);
 
-  // Grid configuration
-  const columns = 12;
-  const rows = 8;
-  const totalBlocks = columns * rows;
+  // Calculate grid based on square blocks
+  const [gridConfig, setGridConfig] = useState({ columns: 12, rows: 8, totalBlocks: 96 });
+
+  useEffect(() => {
+    const calculateGrid = () => {
+      const size = 120; // Tamaño fijo del cuadrado en píxeles
+      const cols = Math.ceil(window.innerWidth / size);
+      const rws = Math.ceil(window.innerHeight / size);
+      setBlockSize(size);
+      setGridConfig({ columns: cols, rows: rws, totalBlocks: cols * rws });
+    };
+
+    calculateGrid();
+    window.addEventListener('resize', calculateGrid);
+    return () => window.removeEventListener('resize', calculateGrid);
+  }, []);
+
+  const { columns, rows, totalBlocks } = gridConfig;
 
   // Generate random order for stagger effect
   const randomOrder = useMemo(() => {
@@ -56,8 +71,8 @@ export function ModeTransition() {
           key={triggerKey}
           className="fixed inset-0 z-[9999] pointer-events-none grid"
           style={{
-            gridTemplateColumns: `repeat(${columns}, 1fr)`,
-            gridTemplateRows: `repeat(${rows}, 1fr)`,
+            gridTemplateColumns: `repeat(${columns}, ${blockSize}px)`,
+            gridTemplateRows: `repeat(${rows}, ${blockSize}px)`,
             mixBlendMode: "exclusion",
           }}
         >

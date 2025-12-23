@@ -32,7 +32,7 @@ export function Hero() {
       : "Elite Opportunities Don't Wait. They Find You.";
 
   return (
-    <section className={`relative min-h-screen flex flex-col items-center justify-start px-4 sm:px-6 lg:px-8 overflow-hidden ${isMobile ? 'pt-4 pb-4' : 'pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-28 sm:pb-32 md:pb-36 lg:pb-40'}`}>
+    <section className={`relative min-h-screen flex flex-col items-center justify-start px-4 sm:px-6 lg:px-8 overflow-hidden ${isMobile ? 'pt-4 pb-[212px]' : 'pt-12 sm:pt-14 md:pt-16 lg:pt-20 pb-28 sm:pb-32 md:pb-36 lg:pb-40'}`}>
       {/* Background Image */}
       <div className="absolute inset-0 z-0">
         <Image
@@ -67,7 +67,7 @@ export function Hero() {
             </div>
 
             {/* Mode Toggle Buttons */}
-            <div className="flex items-center gap-1 bg-slate-800/80 backdrop-blur-sm p-1 rounded-full border border-white/10 mb-16">
+            <div className="flex items-center gap-1 bg-slate-800/80 backdrop-blur-sm p-1 rounded-full border border-white/10 mb-8">
               <button
                 onClick={() => setMode("company")}
                 className="transition-all rounded-full px-3 py-1.5 text-xs leading-tight flex items-center relative overflow-hidden border border-white/20"
@@ -104,29 +104,52 @@ export function Hero() {
           </>
         )}
 
-        {/* Animated Eye Logo */}
+        {/* Animated Eye Logo - Static en móvil, animado en desktop */}
         <div className={`flex items-center justify-center ${isMobile ? 'mb-2' : 'mb-1 sm:mb-2 md:mb-3 lg:mb-4'}`}>
-          <AnimatedEye 
-            size={isMobile ? "40px" : "25px"}
-            maxMovement={6}
-            transitionSpeed="0.12s"
-            className={isMobile ? "" : "sm:!h-[32px] md:!h-[43px] lg:!h-[57px] xl:!h-[71px] [&_img]:!h-[25px] sm:[&_img]:!h-[32px] md:[&_img]:!h-[43px] lg:[&_img]:!h-[57px] xl:[&_img]:!h-[71px]"}
-          />
+          {isMobile ? (
+            <div className="relative">
+              <Image
+                src="/logos/audacity_eye_v3.svg"
+                alt="Audacity Eye"
+                width={52}
+                height={52}
+                className="h-[52px] w-auto brightness-0 invert"
+              />
+              {/* Brillo en azul oscuro */}
+              <Image
+                src="/logos/ojo_anim/brillo_v1.svg"
+                alt="Brillo"
+                width={47}
+                height={47}
+                className="absolute top-[-5px] left-1/2 -translate-x-1/2 h-[47px] w-auto"
+                style={{
+                  filter: "brightness(0) saturate(100%) invert(8%) sepia(50%) saturate(1000%) hue-rotate(200deg) brightness(30%) contrast(100%)",
+                }}
+              />
+            </div>
+          ) : (
+            <AnimatedEye 
+              size="25px"
+              maxMovement={6}
+              transitionSpeed="0.12s"
+              className="sm:!h-[32px] md:!h-[43px] lg:!h-[57px] xl:!h-[71px] [&_img]:!h-[25px] sm:[&_img]:!h-[32px] md:[&_img]:!h-[43px] lg:[&_img]:!h-[57px] xl:[&_img]:!h-[71px]"
+            />
+          )}
         </div>
 
         {/* Main Title */}
-        <h1 className={`font-normal text-white text-center leading-[1.1] ${isMobile ? 'text-2xl mb-1' : 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-1 sm:mb-2 md:mb-3 lg:mb-4'}`} style={{ fontFamily: 'var(--font-beltram-medium)' }}>
+        <h1 className={`font-normal text-white text-center leading-[1.1] ${isMobile ? 'text-3xl mb-1' : 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-1 sm:mb-2 md:mb-3 lg:mb-4'}`} style={{ fontFamily: 'var(--font-beltram-medium)' }}>
           Talent Engine for
           <br />
           Exceptional Humans
         </h1>
 
         {/* Subtitle */}
-        <div className={`text-center ${isMobile ? 'mb-16' : 'mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-10'}`}>
-          <p className={`text-white leading-tight ${isMobile ? 'text-sm' : 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl'}`}>
+        <div className={`text-center ${isMobile ? 'mb-8' : 'mb-3 sm:mb-4 md:mb-6 lg:mb-8 xl:mb-10'}`}>
+          <p className={`text-white leading-tight ${isMobile ? 'text-base' : 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl'}`}>
             {subtitleText.split(". ")[0]}.
           </p>
-          <p className={`text-white leading-tight ${isMobile ? 'text-sm' : 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl'}`}>
+          <p className={`text-white leading-tight ${isMobile ? 'text-base' : 'text-xs sm:text-sm md:text-base lg:text-lg xl:text-xl'}`}>
             {subtitleText.split(". ")[1]}
           </p>
         </div>
@@ -134,11 +157,11 @@ export function Hero() {
         {/* Glassmorphism Form Panel */}
         <div className={`w-full backdrop-blur-[32px] bg-white/20 border border-white/30 shadow-lg ${isMobile ? 'max-w-[280px] rounded-2xl p-3' : 'max-w-[85%] sm:max-w-md md:max-w-lg lg:max-w-xl xl:max-w-2xl rounded-[1rem] sm:rounded-[1.2rem] md:rounded-[1.5rem] lg:rounded-[1.8rem] pt-2 pb-2 px-2.5 sm:pt-3 sm:pb-3 sm:px-4 md:pt-4 md:pb-4 md:px-5 lg:pt-5 lg:pb-5 lg:px-6'}`}>
           {/* Form Title - Inside the panel */}
-          <div className={isMobile ? 'mb-2' : 'mb-1.5 sm:mb-2 md:mb-3 lg:mb-4'}>
-            <h2 className={`font-semibold text-white ${isMobile ? 'text-xs mb-1' : 'text-[0.65rem] sm:text-xs md:text-sm lg:text-base mb-0.5 sm:mb-1'}`} style={{ textShadow: '0 2px 8px rgba(15, 23, 42, 0.5)' }}>
+          <div className={isMobile ? 'mb-2 text-center' : 'mb-1.5 sm:mb-2 md:mb-3 lg:mb-4'}>
+            <h2 className={`font-semibold text-white ${isMobile ? 'text-[10px] mb-1' : 'text-[0.65rem] sm:text-xs md:text-sm lg:text-base mb-0.5 sm:mb-1'}`} style={{ textShadow: '0 2px 8px rgba(15, 23, 42, 0.5)' }}>
               Who are you looking for?
             </h2>
-            <p className={`text-white leading-tight ${isMobile ? 'text-[10px]' : 'text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-xs'}`} style={{ textShadow: '0 2px 8px rgba(15, 23, 42, 0.5)' }}>
+            <p className={`text-white leading-tight ${isMobile ? 'text-[8px]' : 'text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-xs'}`} style={{ textShadow: '0 2px 8px rgba(15, 23, 42, 0.5)' }}>
               Describe your ideal candidate, experience, culture, and anything
               else you consider important:
             </p>

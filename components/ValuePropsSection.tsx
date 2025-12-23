@@ -146,13 +146,13 @@ export function ValuePropsSection() {
           <div className={`mx-auto px-6 md:px-10 ${isMobile ? 'max-w-[280px]' : 'max-w-3xl'}`}>
             <FadeInView direction="up" duration={0.8}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
-                <Image
-                  src="/images/human_resources_placeholder_verde.jpg"
-                  alt="Top performers network"
-                  width={800}
-                  height={500}
+                <video
+                  src="/video/4.mp4"
+                  autoPlay
+                  loop
+                  muted
+                  playsInline
                   className="w-full h-auto object-cover"
-                  priority={false}
                 />
                 {/* Quote Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-center justify-center p-8">
