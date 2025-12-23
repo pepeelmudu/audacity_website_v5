@@ -63,7 +63,7 @@ export function AnimatedEye({
       // Calcular posición del brillo - independiente, con más parallax y puede mirar arriba
       const brilloParallax = 1.8; // Factor de parallax aumentado
       const brilloMovX = Math.cos(angle) * easedDistance * effectiveMaxMovement * brilloParallax * 2;
-      const brilloMovY = Math.sin(angle) * easedDistance * effectiveMaxMovement * brilloParallax; // Sin restricción vertical
+      const brilloMovY = Math.sin(angle) * easedDistance * effectiveMaxMovement * brilloParallax * 0.4; // Menos movimiento vertical
       
       setBrilloX(brilloMovX);
       setBrilloY(brilloMovY);
@@ -94,7 +94,7 @@ export function AnimatedEye({
         src="/logos/ojo_anim/pupila_v2.svg"
         alt="Pupila" 
         style={{ 
-          height: size,
+          height: `calc(${size} * 0.9)`,
           width: "auto",
           filter: "brightness(0) saturate(100%) invert(100%)",
           position: "absolute",
@@ -111,7 +111,7 @@ export function AnimatedEye({
         src="/logos/ojo_anim/brillo_v1.svg"
         alt="Brillo" 
         style={{ 
-          height: size,
+          height: `calc(${size} * 0.9)`,
           width: "auto",
           filter: "brightness(0) saturate(100%) invert(8%) sepia(4%) saturate(200%) hue-rotate(200deg) brightness(95%) contrast(95%)",
           position: "absolute",
