@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useState } from "react";
 import { useMode } from "@/contexts/ModeContext";
 import { motion } from "framer-motion";
+import { FadeInView, StaggerContainer, StaggerItem } from "./animations";
 
 const faqs = [
   {
@@ -30,6 +31,7 @@ const faqs = [
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
+  const [contactHover, setContactHover] = useState(false);
   const { mode, accentColor } = useMode();
 
   const toggleFAQ = (index: number) => {
@@ -55,63 +57,66 @@ export function FAQSection() {
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 min-h-[600px]">
         {/* Title */}
-        <h2 
-          className="text-3xl md:text-4xl lg:text-5xl text-[#a8d5c2] mb-12"
-          style={{ fontFamily: 'var(--font-beltram-regular)' }}
-        >
-          Frequently asked Questions
-        </h2>
+        <FadeInView direction="up">
+          <h2 
+            className="text-3xl md:text-4xl lg:text-5xl text-[#a8d5c2] mb-12"
+            style={{ fontFamily: 'var(--font-beltram-regular)' }}
+          >
+            Frequently asked Questions
+          </h2>
+        </FadeInView>
 
         {/* FAQ and 3D Asset Container */}
         <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
           {/* FAQ Accordion */}
-          <div className="flex-1 space-y-3 max-w-md">
+          <StaggerContainer className="flex-1 space-y-3 max-w-md" staggerDelay={0.1}>
             {faqs.map((faq, index) => (
-              <div
-                key={index}
-                className="overflow-hidden backdrop-blur-xl border border-white/20 relative"
-                style={{
-                  background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
-                  boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
-                }}
-              >
-                {/* White overlay */}
-                <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
-                <button
-                  onClick={() => toggleFAQ(index)}
-                  className="w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10"
-                >
-                  <div className="flex items-center gap-3">
-                    <span className="text-white/70 text-sm">◇</span>
-                    <span className="text-white text-sm font-medium">{faq.question}</span>
-                  </div>
-                  <svg
-                    className={`w-5 h-5 text-white/70 transition-transform duration-300 ${
-                      openIndex === index ? 'rotate-180' : ''
-                    }`}
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    strokeWidth="2"
-                  >
-                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
-                  </svg>
-                </button>
+              <StaggerItem key={index}>
                 <div
-                  className={`overflow-hidden transition-all duration-300 ease-in-out relative z-10 ${
-                    openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
-                  }`}
+                  className="overflow-hidden backdrop-blur-xl border border-white/20 relative"
+                  style={{
+                    background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
+                    boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
+                  }}
                 >
-                  <p className="pl-3 pr-5 pb-4 pt-1 text-white/80 text-xs leading-relaxed">
-                    {faq.answer}
-                  </p>
+                  {/* White overlay */}
+                  <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
+                  <button
+                    onClick={() => toggleFAQ(index)}
+                    className="w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10"
+                  >
+                    <div className="flex items-center gap-3">
+                      <span className="text-white/70 text-sm">◇</span>
+                      <span className="text-white text-sm font-medium">{faq.question}</span>
+                    </div>
+                    <svg
+                      className={`w-5 h-5 text-white/70 transition-transform duration-300 ${
+                        openIndex === index ? 'rotate-180' : ''
+                      }`}
+                      viewBox="0 0 24 24"
+                      fill="none"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                    >
+                      <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                    </svg>
+                  </button>
+                  <div
+                    className={`overflow-hidden transition-all duration-300 ease-in-out relative z-10 ${
+                      openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                    }`}
+                  >
+                    <p className="pl-3 pr-5 pb-4 pt-1 text-white/80 text-xs leading-relaxed">
+                      {faq.answer}
+                    </p>
+                  </div>
                 </div>
-              </div>
+              </StaggerItem>
             ))}
-          </div>
+          </StaggerContainer>
 
           {/* 3D Asset */}
-          <div className="flex-shrink-0 lg:w-[350px] flex items-center justify-center relative lg:ml-12">
+          <FadeInView direction="right" delay={0.3} className="flex-shrink-0 lg:w-[350px] flex items-center justify-center relative lg:ml-12">
             <Image
               src={mode === "company" ? "/3d_assets/A/A_low.png" : "/3d_assets/A/A_low_green.png"}
               alt="Audacity 3D A"
@@ -122,46 +127,47 @@ export function FAQSection() {
                 filter: 'drop-shadow(0 25px 35px rgba(30, 20, 10, 0.9)) saturate(0.8)',
               }}
             />
-          </div>
+          </FadeInView>
         </div>
 
         {/* CTA Section - Fixed position */}
-        <div className="text-center absolute -bottom-4 left-0 right-0">
+        <FadeInView direction="up" delay={0.1} className="text-center absolute -bottom-4 left-0 right-0">
           <p className="text-[#a8d5c2] text-lg md:text-xl mb-4">
             You still have a question? No problem.
           </p>
-          <button
-            className="px-8 pt-2.5 pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
-            style={{
-              background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
-              boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
-            }}
+          <div 
+            className="relative inline-block"
+            onMouseEnter={() => setContactHover(true)}
+            onMouseLeave={() => setContactHover(false)}
           >
-            {/* Animated noise glow - masked inside button */}
+            {/* Animated Glow exterior */}
             <motion.div
-              className="absolute inset-[-100%] w-[300%] h-[300%] opacity-50 pointer-events-none"
+              className="absolute inset-0 rounded-full"
               style={{
-                background: `
-                  radial-gradient(circle at 20% 50%, ${accentColor} 0%, transparent 25%),
-                  radial-gradient(circle at 80% 50%, ${accentColor} 0%, transparent 25%),
-                  radial-gradient(circle at 50% 10%, ${accentColor} 0%, transparent 25%),
-                  radial-gradient(circle at 50% 90%, ${accentColor} 0%, transparent 25%)
-                `,
-                filter: "blur(8px)",
+                backgroundColor: accentColor,
+                filter: 'blur(12px)',
               }}
               animate={{
-                rotate: [0, 360],
+                opacity: contactHover ? 0.5 : 0,
+                scale: contactHover ? 1.1 : 1,
               }}
               transition={{
-                duration: 8,
-                repeat: Infinity,
-                ease: "linear",
+                duration: 0.3,
+                ease: "easeOut",
               }}
             />
-            <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
-            <span className="relative z-10">Contact Audacity</span>
-          </button>
-        </div>
+            <button
+              className="px-8 pt-2.5 pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
+              style={{
+                background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
+                boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
+              }}
+            >
+              <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
+              <span className="relative z-10">Contact Audacity</span>
+            </button>
+          </div>
+        </FadeInView>
       </div>
     </section>
   );

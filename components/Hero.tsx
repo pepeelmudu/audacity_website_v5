@@ -5,9 +5,24 @@ import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CompaniesBar } from "@/components/CompaniesBar";
 import { motion } from "framer-motion";
+import { useState, useRef } from "react";
+import { AnimatedEye } from "./AnimatedEye";
 
 export function Hero() {
   const { mode, accentColor } = useMode();
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
+  const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleAttachClick = () => {
+    fileInputRef.current?.click();
+  };
+
+  const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const file = e.target.files?.[0];
+    if (file) {
+      setSelectedFile(file);
+    }
+  };
 
   const subtitleText =
     mode === "company"
@@ -33,31 +48,14 @@ export function Hero() {
 
       {/* Content Container */}
       <div className="relative z-20 w-full max-w-5xl mx-auto flex flex-col items-center">
-        {/* Eye Logo */}
+        {/* Animated Eye Logo */}
         <div className="mb-1 sm:mb-2 md:mb-3 lg:mb-4 flex items-center justify-center">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            viewBox="0 0 30000 12500"
-            className="w-[70px] h-[25px] sm:w-[90px] sm:h-[32px] md:w-[120px] md:h-[43px] lg:w-[160px] lg:h-[57px] xl:w-[200px] xl:h-[71px]"
-          >
-            <defs>
-              <style>{`
-                .str0 {stroke:white;stroke-width:7.62}
-                .fil2 {fill:white;fill-rule:nonzero}
-                .fil1 {fill:white;fill-rule:nonzero}
-                .fil0 {fill:#0f172a;fill-rule:nonzero}
-              `}</style>
-            </defs>
-            <g>
-              <polygon className="fil0" points="15000,2306 14561,4352 12514,4792 14561,5231 15000,7278 15439,5231 17486,4792 15439,4352" />
-              <path className="fil1" d="M2525 55622c-2,667 216,1339 667,1898 1044,1291 2941,1492 4232,449 746,-603 1128,-1490 1117,-2381l4352 1635 -7054 2650 -261 98 -261 -98 -7054 -2650 4262 -1601z" />
-              <polygon className="fil1" points="5533,53217 5107,55202 3122,55628 5107,56055 5533,58040 5959,56055 7944,55628 5959,55202" />
-              <g>
-                <path className="fil2 str0" d="M2571 6946l1197 450 10360 3892c562,211 1182,211 1744,0l10360 -3892 1197 -450 1852 -696 -1852 -696 -1197 -450 -10360 -3892c-562,-211 -1182,-211 -1744,0l-10360 3892 -1197 450 -1852 696 1852 696zm14324 49c844,-682 1223,-1726 1096,-2729l403 152 4877 1832 -7976 2997 -295 110 -295 -110 -7976 -2997 4877 -1832 403 -152c-100,788 108,1613 645,2278 1046,1295 2947,1497 4241,451z" />
-                <polygon className="fil0 str0" points="15000,2232 14573,4222 12583,4649 14573,5076 15000,7066 15427,5076 17417,4649 15427,4222" />
-              </g>
-            </g>
-          </svg>
+          <AnimatedEye 
+            size="25px"
+            maxMovement={6}
+            transitionSpeed="0.12s"
+            className="sm:!h-[32px] md:!h-[43px] lg:!h-[57px] xl:!h-[71px] [&_img]:!h-[25px] sm:[&_img]:!h-[32px] md:[&_img]:!h-[43px] lg:[&_img]:!h-[57px] xl:[&_img]:!h-[71px]"
+          />
         </div>
 
         {/* Main Title */}
@@ -93,7 +91,7 @@ export function Hero() {
           {/* Large Textarea */}
           <textarea
             placeholder="e.g., We're looking for a senior frontend engineer with 5+ years of React experience, strong TypeScript skills, and a passion for building elegant user interfaces. Bonus points for design system experience..."
-            className="w-full h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-md sm:rounded-lg md:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-[0.825rem]"
+            className="w-full h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-md sm:rounded-lg md:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-[0.825rem]"
           />
 
           {/* Input Grid - 2x2 on desktop, stacked on mobile */}
@@ -102,7 +100,7 @@ export function Hero() {
               <input
                 type="text"
                 required
-                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
+                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
                 placeholder="Company Name*"
               />
             </div>
@@ -110,21 +108,21 @@ export function Hero() {
               <input
                 type="email"
                 required
-                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
+                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
                 placeholder="Contact Email*"
               />
             </div>
             <div>
               <input
                 type="text"
-                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
+                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
                 placeholder="Contact Linkedin"
               />
             </div>
             <div>
               <input
                 type="text"
-                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
+                className="w-full px-2 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-2.5 rounded-full bg-white/10 backdrop-blur-sm border border-white/20 text-white placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem]"
                 placeholder="Contact Telegram"
               />
             </div>
@@ -132,8 +130,21 @@ export function Hero() {
 
           {/* Bottom Row - File Upload and CTA Button */}
           <div className="flex items-center justify-between mt-3 sm:mt-4 md:mt-5 relative">
+            {/* Hidden File Input */}
+            <input
+              type="file"
+              ref={fileInputRef}
+              onChange={handleFileChange}
+              accept=".pdf,.doc,.docx,.txt"
+              className="hidden"
+            />
+            
             {/* File Upload Option */}
-            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
+            <button
+              type="button"
+              onClick={handleAttachClick}
+              className="flex items-center gap-1.5 sm:gap-2 md:gap-3 cursor-pointer hover:opacity-80 transition-opacity"
+            >
               <div 
                 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{
@@ -158,10 +169,20 @@ export function Hero() {
                   />
                 </svg>
               </div>
-              <span className="text-white/70 text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem] leading-tight">
-                Attach Job Description<br />(optional)
+              <span className="text-white/70 text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem] leading-tight text-left">
+                {selectedFile ? (
+                  <>
+                    <span className="text-white">{selectedFile.name.length > 20 ? selectedFile.name.slice(0, 17) + '...' : selectedFile.name}</span>
+                    <br />
+                    <span className="text-green-400">(attached ✓)</span>
+                  </>
+                ) : (
+                  <>
+                    Attach Job Description<br />(optional)
+                  </>
+                )}
               </span>
-            </div>
+            </button>
 
             {/* CTA Button - Centered */}
             <div className="absolute left-1/2 -translate-x-1/2">
