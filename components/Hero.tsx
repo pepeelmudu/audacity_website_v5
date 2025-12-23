@@ -138,7 +138,7 @@ export function Hero() {
         </div>
 
         {/* Main Title */}
-        <h1 className={`font-normal text-white text-center leading-[1.1] ${isMobile ? 'text-3xl mb-1' : 'text-lg sm:text-xl md:text-2xl lg:text-3xl xl:text-4xl 2xl:text-5xl mb-1 sm:mb-2 md:mb-3 lg:mb-4'}`} style={{ fontFamily: 'var(--font-beltram-medium)' }}>
+        <h1 className={`font-normal text-white text-center leading-[1.1] ${isMobile ? 'text-[1.7rem] mb-1' : 'text-lg sm:text-xl md:text-2xl lg:text-[1.7rem] xl:text-[2.1rem] 2xl:text-[2.6rem] mb-1 sm:mb-2 md:mb-3 lg:mb-4'}`} style={{ fontFamily: 'var(--font-beltram-regular)' }}>
           Talent Engine for
           <br />
           Exceptional Humans
