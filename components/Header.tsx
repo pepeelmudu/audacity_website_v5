@@ -83,11 +83,11 @@ export function Header() {
                   }}
                   initial={{ opacity: 0 }}
                   animate={{
-                    opacity: companyHover ? 0.5 : 0,
+                    opacity: companyHover ? 1 : 0,
                     rotate: [0, 360],
                   }}
                   transition={{
-                    opacity: { duration: 1, ease: "easeInOut" },
+                    opacity: { duration: 0.5, ease: "easeOut", from: companyHover ? 0.2 : 0 },
                     rotate: { duration: 8, repeat: Infinity, ease: "linear" },
                   }}
                 />
@@ -152,11 +152,11 @@ export function Header() {
                   }}
                   initial={{ opacity: 0 }}
                   animate={{
-                    opacity: candidateHover ? 0.5 : 0,
+                    opacity: candidateHover ? 1 : 0,
                     rotate: [0, 360],
                   }}
                   transition={{
-                    opacity: { duration: 1, ease: "easeInOut" },
+                    opacity: { duration: 0.5, ease: "easeOut", from: candidateHover ? 0.2 : 0 },
                     rotate: { duration: 8, repeat: Infinity, ease: "linear" },
                   }}
                 />
