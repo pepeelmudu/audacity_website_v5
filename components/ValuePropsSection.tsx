@@ -192,16 +192,16 @@ export function ValuePropsSection() {
               >
                 <div className="flex items-center gap-2 mb-4">
                   {/* Check icon placeholder */}
-                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-[#1a3a3a]">
+                  <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-black">
                     <circle cx="12" cy="12" r="9" stroke="currentColor" strokeWidth="1.5"/>
                     <path d="M8 12l3 3 5-6" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
                   </svg>
-                  <span className="text-[#1a3a3a] font-semibold">A calling</span>
+                  <span className="text-black font-semibold">A calling</span>
                 </div>
                 <ul className="space-y-2">
                   {aCalling.map((item, index) => (
-                    <li key={index} className="flex items-center gap-2 text-xs text-[#1a3a3a]">
-                      <span className="text-[#1a3a3a]">›</span>
+                    <li key={index} className="flex items-center gap-2 text-xs text-black">
+                      <span className="text-black">›</span>
                       {item}
                     </li>
                   ))}
