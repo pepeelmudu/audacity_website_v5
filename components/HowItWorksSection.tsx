@@ -3,31 +3,36 @@
 import Image from "next/image";
 import { FadeInView, StaggerContainer, StaggerItem } from "./animations";
 import { useIsMobile } from "@/hooks/useIsMobile";
+import { useMode } from "@/contexts/ModeContext";
 
 const steps = [
   {
     number: "Step 1",
     title: "Prompt the Audacity Engine",
     description: "Tell us about your ideal candidate, their skills, their culture, and their vibes.",
-    icon: "/3d_assets/how_to/orange/1.png",
+    iconOrange: "/3d_assets/how_to/orange/1.png",
+    iconGreen: "/3d_assets/how_to/orange/how_1_green.png",
   },
   {
     number: "Step 2",
     title: "Get Talent Profiles",
     description: "Our algorithm chooses from a network of top performers and guarantees your requirements are met.",
-    icon: "/3d_assets/how_to/orange/2.png",
+    iconOrange: "/3d_assets/how_to/orange/2.png",
+    iconGreen: "/3d_assets/how_to/orange/how_2_green.png",
   },
   {
     number: "Step 3",
     title: "Meet Your Picks",
     description: "Get a list of candidates within 48h. If Audacity finds more matches, we update your candidate list.",
-    icon: "/3d_assets/how_to/orange/3.png",
+    iconOrange: "/3d_assets/how_to/orange/3.png",
+    iconGreen: "/3d_assets/how_to/orange/how_3_green.png",
   },
   {
     number: "Step 4",
     title: "Build Your Team",
     description: "Hire your exceptional human.",
-    icon: "/3d_assets/how_to/orange/4.png",
+    iconOrange: "/3d_assets/how_to/orange/4.png",
+    iconGreen: "/3d_assets/how_to/orange/how_4_green.png",
   },
 ];
 
@@ -54,6 +59,7 @@ const testimonials = [
 
 export function HowItWorksSection() {
   const isMobile = useIsMobile();
+  const { mode } = useMode();
 
   return (
     <section className="w-full bg-[#a8d5c2] py-12 md:py-20">
@@ -72,7 +78,7 @@ export function HowItWorksSection() {
                 {/* Icon Box */}
                 <div className="border border-[#0a2540] p-3 mb-3 aspect-square flex items-center justify-center bg-transparent overflow-hidden w-full">
                   <Image
-                    src={step.icon}
+                    src={mode === "company" ? step.iconOrange : step.iconGreen}
                     alt={step.title}
                     width={120}
                     height={120}
