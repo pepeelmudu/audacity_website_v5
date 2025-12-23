@@ -31,19 +31,19 @@ const steps = [
 
 const testimonials = [
   {
-    image: "/images/what_c_say/1.jpg",
+    image: "/images/what_c_say/1g.jpg",
     quote: "Audacity didn't just find us a developer, they found us the perfect team member. The quality of candidates is unmatched.",
     name: "Sarah Chen",
     role: "CTO, TechVision AI",
   },
   {
-    image: "/images/what_c_say/2.jpg",
+    image: "/images/what_c_say/2g.jpg",
     quote: "We've tried every recruiting platform out there. Audacity is the only one that actually understands what we're looking for.",
     name: "Marcus Rodriguez",
     role: "Head of Talent, StreamFlow",
   },
   {
-    image: "/images/what_c_say/3.jpg",
+    image: "/images/what_c_say/3g.jpg",
     quote: "The talent engine is incredible. We filled three senior positions in two weeks. That's unheard of in our industry.",
     name: "Emily Watson",
     role: "VP of Engineering, CloudScale",
@@ -59,7 +59,7 @@ export function HowItWorksSection() {
           How It Works
         </h2>
 
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-4 mb-20">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20">
           {steps.map((step, index) => (
             <div key={index} className="flex flex-col">
               {/* Icon Box */}
@@ -69,12 +69,12 @@ export function HowItWorksSection() {
                   alt={step.title}
                   width={120}
                   height={120}
-                  className="object-contain w-full h-full"
+                  className="object-contain w-full h-full saturate-[0.8]"
                 />
               </div>
               <h3 className="text-lg font-bold text-[#0a2540]">{step.number}</h3>
-              <h4 className="text-sm font-bold text-[#0a2540] mb-1">{step.title}</h4>
-              <p className="text-xs text-[#0a2540] font-medium leading-relaxed">{step.description}</p>
+              <h4 className="text-xs font-bold text-[#0a2540] mb-1">{step.title}</h4>
+              <p className="text-xs text-[#0a2540] font-medium leading-tight">{step.description}</p>
             </div>
           ))}
         </div>
@@ -95,6 +95,7 @@ export function HowItWorksSection() {
                   fill
                   className="object-cover transition-transform duration-300 hover:scale-110"
                 />
+                <div className="absolute inset-0 bg-[#023329] opacity-20 pointer-events-none"></div>
               </div>
               {/* Content */}
               <div className="p-3">

@@ -13,7 +13,7 @@ const companies = [
 
 export function CompaniesBar() {
   return (
-    <div className="w-full bg-[#051025] min-h-[67px] md:min-h-[84px] flex flex-col items-center justify-center py-2 relative">
+    <div className="w-full bg-[#030c2f] min-h-[67px] md:min-h-[84px] flex flex-col items-center justify-center py-2 relative">
       {/* Frase fuera del contenedor, justo encima */}
       <p 
         className="text-center text-[0.56rem] md:text-[0.7rem] font-light mb-2 md:mb-3 absolute -top-6 md:-top-7 left-1/2 transform -translate-x-1/2 whitespace-nowrap opacity-75"

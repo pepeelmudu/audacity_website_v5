@@ -35,56 +35,50 @@ export function Header() {
           transition={{ duration: 0.5 }}
           className="flex items-center gap-1 bg-slate-800/80 backdrop-blur-sm p-1 rounded-full border border-white/10"
         >
-          <Button
-            variant="ghost"
+          <button
             onClick={() => setMode("company")}
-            className="transition-all rounded-full px-4 pt-1 pb-2 text-sm leading-tight flex items-center"
+            className="transition-all rounded-full px-4 pt-1.5 pb-2.5 text-sm leading-tight flex items-center relative overflow-hidden border border-white/20 hover:scale-105"
             style={{
-              backgroundColor: mode === "company" ? accentColor : "transparent",
-              color: mode === "company" ? "#1e293b" : "rgba(255, 255, 255, 0.6)",
-            }}
-            onMouseEnter={(e) => {
-              if (mode === "company") {
-                e.currentTarget.style.backgroundColor = mode === "company" ? "#44e690" : accentColor;
-              } else {
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (mode === "company") {
-                e.currentTarget.style.backgroundColor = accentColor;
-              } else {
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)";
-              }
+              backgroundColor: mode === "company" ? "#ee722f" : "transparent",
+              color: mode === "company" ? "white" : "rgba(255, 255, 255, 0.6)",
+              boxShadow: mode === "company" ? 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)' : 'none',
             }}
           >
-            Company
-          </Button>
-          <Button
-            variant="ghost"
+            {mode === "company" && (
+              <>
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                  }}
+                ></div>
+                <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
+              </>
+            )}
+            <span className="relative z-10">Company</span>
+          </button>
+          <button
             onClick={() => setMode("candidate")}
-            className="transition-all rounded-full px-4 pt-1 pb-2 text-sm leading-tight flex items-center"
+            className="transition-all rounded-full px-4 pt-1.5 pb-2.5 text-sm leading-tight flex items-center relative overflow-hidden border border-white/20 hover:scale-105"
             style={{
-              backgroundColor: mode === "candidate" ? accentColor : "transparent",
-              color: mode === "candidate" ? "#1e293b" : "rgba(255, 255, 255, 0.6)",
-            }}
-            onMouseEnter={(e) => {
-              if (mode === "candidate") {
-                e.currentTarget.style.backgroundColor = mode === "candidate" ? "#f2376c" : accentColor;
-              } else {
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.8)";
-              }
-            }}
-            onMouseLeave={(e) => {
-              if (mode === "candidate") {
-                e.currentTarget.style.backgroundColor = accentColor;
-              } else {
-                e.currentTarget.style.color = "rgba(255, 255, 255, 0.6)";
-              }
+              backgroundColor: mode === "candidate" ? "#b5ea4e" : "transparent",
+              color: mode === "candidate" ? "white" : "rgba(255, 255, 255, 0.6)",
+              boxShadow: mode === "candidate" ? 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)' : 'none',
             }}
           >
-            Candidate
-          </Button>
+            {mode === "candidate" && (
+              <>
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                  }}
+                ></div>
+                <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
+              </>
+            )}
+            <span className="relative z-10">Candidate</span>
+          </button>
         </motion.div>
       </div>
     </header>

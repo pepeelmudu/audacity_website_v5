@@ -163,21 +163,24 @@ export function Hero() {
 
           {/* CTA Button */}
           <div className="flex justify-center -mt-5">
-            <Button
-              size="lg"
-              className="px-4 pt-4 pb-5 sm:px-5 sm:pt-5 sm:pb-6 text-sm sm:text-base font-semibold rounded-full transition-all hover:scale-105 text-black border-0"
+            <button
+              className="px-8 pt-2.5 pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
               style={{
                 backgroundColor: accentColor,
-              }}
-              onMouseEnter={(e) => {
-                e.currentTarget.style.backgroundColor = mode === "company" ? "#44e690" : "#f2376c";
-              }}
-              onMouseLeave={(e) => {
-                e.currentTarget.style.backgroundColor = accentColor;
+                boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
               }}
             >
-              Activate Talent Engine
-            </Button>
+              {/* Gradiente azul oscuro */}
+              <div 
+                className="absolute inset-0 pointer-events-none"
+                style={{
+                  background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                }}
+              ></div>
+              {/* Capa blanca */}
+              <div className="absolute inset-0 bg-white opacity-20 pointer-events-none"></div>
+              <span className="relative z-10">Activate Talent Engine</span>
+            </button>
           </div>
         </div>
       </div>

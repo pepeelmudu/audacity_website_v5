@@ -1,18 +1,22 @@
 "use client";
 
 import Image from "next/image";
+import { useMode } from "@/contexts/ModeContext";
 
-const valueProps = [
+const valuePropsData = [
   {
-    icon: "/3d_assets/1_orange.png",
+    iconOrange: "/3d_assets/1_orange.png",
+    iconGreen: "/3d_assets/1_green.png",
     description: "The best people aren't looking—they're busy crushing it at their current job. That's exactly who you want.",
   },
   {
-    icon: "/3d_assets/2_orange.png",
+    iconOrange: "/3d_assets/2_orange.png",
+    iconGreen: "/3d_assets/2_green.png",
     description: "If your hiring process involves praying someone good applies, you're not recruiting. You're gambling.",
   },
   {
-    icon: "/3d_assets/3_orange.png",
+    iconOrange: "/3d_assets/3_orange.png",
+    iconGreen: "/3d_assets/3_green.png",
     description: "If you're working with several recruiters and 2 months are not enough time to find your person.. maybe it's time to change things up.",
   },
 ];
@@ -32,6 +36,8 @@ const aCalling = [
 ];
 
 export function ValuePropsSection() {
+  const { mode } = useMode();
+
   return (
     <section className="relative w-full">
       {/* Background Image */}
@@ -74,11 +80,11 @@ export function ValuePropsSection() {
             </div>
 
             {/* Feature Cards Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-4xl mx-auto">
-              {valueProps.map((prop, index) => (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-[52rem] mx-auto">
+              {valuePropsData.map((prop, index) => (
                 <div
                   key={index}
-                  className="backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl pt-6 pb-3 px-6 md:pt-8 md:pb-4 md:px-8 hover:-translate-y-1 hover:shadow-2xl transition-transform transition-shadow duration-300"
+                  className="backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl pt-6 pb-3 px-4 md:pt-8 md:pb-4 md:px-5 hover:-translate-y-1 hover:shadow-2xl transition-transform transition-shadow duration-300"
                   style={{
                     background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
                     boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 20px 40px -10px rgba(0,0,0,0.3)',
@@ -87,11 +93,11 @@ export function ValuePropsSection() {
                   {/* Icon */}
                   <div className="mb-5">
                     <Image
-                      src={prop.icon}
+                      src={mode === "company" ? prop.iconOrange : prop.iconGreen}
                       alt=""
                       width={200}
                       height={200}
-                      className="w-[200px] h-[200px] mx-auto object-contain"
+                      className="w-[200px] h-[200px] mx-auto object-contain saturate-[0.8]"
                       priority={false}
                     />
                   </div>
@@ -107,7 +113,7 @@ export function ValuePropsSection() {
         </div>
 
         {/* Middle Section - Image with Quote */}
-        <div className="py-12 md:py-20">
+        <div className="pt-2 pb-12 md:pt-4 md:pb-20">
           <div className="max-w-3xl mx-auto px-6 md:px-10">
             <div className="relative rounded-2xl overflow-hidden shadow-2xl">
               <Image
