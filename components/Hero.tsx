@@ -4,6 +4,7 @@ import { useMode } from "@/contexts/ModeContext";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CompaniesBar } from "@/components/CompaniesBar";
+import { motion } from "framer-motion";
 
 export function Hero() {
   const { mode, accentColor } = useMode();
@@ -164,24 +165,47 @@ export function Hero() {
 
             {/* CTA Button - Centered */}
             <div className="absolute left-1/2 -translate-x-1/2">
-              <button
-                className="px-4 sm:px-5 md:px-6 lg:px-8 pt-1.5 pb-2 sm:pt-2 sm:pb-2.5 md:pt-2 md:pb-3 lg:pt-2.5 lg:pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white text-[0.7rem] sm:text-xs md:text-sm lg:text-base font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
-                style={{
-                  backgroundColor: accentColor,
-                  boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
-                }}
+              <motion.div
+                className="relative"
+                whileHover={{ scale: 1.05 }}
+                transition={{ type: "spring", stiffness: 400, damping: 10 }}
               >
-                {/* Gradiente azul oscuro */}
-                <div 
-                  className="absolute inset-0 pointer-events-none"
+                {/* Animated Glow */}
+                <motion.div
+                  className="absolute inset-0 rounded-full"
                   style={{
-                    background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                    backgroundColor: accentColor,
+                    filter: 'blur(20px)',
                   }}
-                ></div>
-                {/* Capa blanca */}
-                <div className="absolute inset-0 bg-white opacity-20 pointer-events-none"></div>
-                <span className="relative z-10">Activate Talent Engine</span>
-              </button>
+                  animate={{
+                    opacity: [0.4, 0.7, 0.4],
+                    scale: [1, 1.1, 1],
+                  }}
+                  transition={{
+                    duration: 6,
+                    repeat: Infinity,
+                    ease: "easeInOut",
+                  }}
+                />
+                <button
+                  className="px-4 sm:px-5 md:px-6 lg:px-8 py-1.5 sm:py-2 md:py-2.5 rounded-full backdrop-blur-xl border border-white/20 text-white text-[0.6rem] sm:text-[0.65rem] md:text-[0.75rem] lg:text-[0.825rem] font-medium relative overflow-hidden"
+                  style={{
+                    backgroundColor: accentColor,
+                    boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
+                  }}
+                >
+                  {/* Gradiente azul oscuro */}
+                  <div 
+                    className="absolute inset-0 pointer-events-none"
+                    style={{
+                      background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                    }}
+                  ></div>
+                  {/* Capa blanca */}
+                  <div className="absolute inset-0 bg-white opacity-20 pointer-events-none"></div>
+                  <span className="relative z-10">Activate Talent Engine</span>
+                </button>
+              </motion.div>
             </div>
 
             {/* Spacer para equilibrar */}

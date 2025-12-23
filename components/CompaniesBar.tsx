@@ -60,7 +60,7 @@ export function CompaniesBar() {
                   className={`${heightClass} w-auto object-contain`}
                   priority={false}
                   style={{
-                    filter: 'brightness(0) saturate(100%) invert(78%) sepia(8%) saturate(600%) hue-rotate(145deg) brightness(98%) contrast(88%)',
+                    filter: 'brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(400%) hue-rotate(100deg) brightness(95%) contrast(90%)',
                     display: 'block',
                     transform: needsOffset ? 'translateY(4px)' : 'none',
                   }}

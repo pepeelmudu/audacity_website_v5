@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { useMode } from "@/contexts/ModeContext";
+import { motion } from "framer-motion";
 
 const valuePropsData = [
   {
@@ -91,13 +92,31 @@ export function ValuePropsSection() {
                   }}
                 >
                   {/* Icon */}
-                  <div className="mb-5">
+                  <div className="mb-5 relative">
+                    {/* Animated glow effect */}
+                    <motion.div
+                      className="absolute inset-0 rounded-full blur-2xl"
+                      style={{
+                        background: mode === "company" 
+                          ? "radial-gradient(circle, rgba(238,114,47,0.4) 0%, transparent 70%)"
+                          : "radial-gradient(circle, rgba(181,234,78,0.4) 0%, transparent 70%)",
+                      }}
+                      animate={{
+                        opacity: [0.3, 0.7, 0.3],
+                        scale: [0.9, 1.1, 0.9],
+                      }}
+                      transition={{
+                        duration: 6,
+                        repeat: Infinity,
+                        ease: "easeInOut",
+                      }}
+                    />
                     <Image
                       src={mode === "company" ? prop.iconOrange : prop.iconGreen}
                       alt=""
                       width={200}
                       height={200}
-                      className="w-[200px] h-[200px] mx-auto object-contain saturate-[0.8]"
+                      className="w-[200px] h-[200px] mx-auto object-contain saturate-[0.8] relative z-10"
                       priority={false}
                     />
                   </div>

@@ -3,6 +3,7 @@
 import Image from "next/image";
 import { useState } from "react";
 import { useMode } from "@/contexts/ModeContext";
+import { motion } from "framer-motion";
 
 const faqs = [
   {
@@ -29,7 +30,7 @@ const faqs = [
 
 export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
-  const { mode } = useMode();
+  const { mode, accentColor } = useMode();
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -136,6 +137,27 @@ export function FAQSection() {
               boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
             }}
           >
+            {/* Animated noise glow - masked inside button */}
+            <motion.div
+              className="absolute inset-[-100%] w-[300%] h-[300%] opacity-50 pointer-events-none"
+              style={{
+                background: `
+                  radial-gradient(circle at 20% 50%, ${accentColor} 0%, transparent 25%),
+                  radial-gradient(circle at 80% 50%, ${accentColor} 0%, transparent 25%),
+                  radial-gradient(circle at 50% 10%, ${accentColor} 0%, transparent 25%),
+                  radial-gradient(circle at 50% 90%, ${accentColor} 0%, transparent 25%)
+                `,
+                filter: "blur(8px)",
+              }}
+              animate={{
+                rotate: [0, 360],
+              }}
+              transition={{
+                duration: 8,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+            />
             <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
             <span className="relative z-10">Contact Audacity</span>
           </button>
