@@ -92,11 +92,11 @@ export function Hero() {
           {/* Large Textarea */}
           <textarea
             placeholder="e.g., We're looking for a senior frontend engineer with 5+ years of React experience, strong TypeScript skills, and a passion for building elegant user interfaces. Bonus points for design system experience..."
-            className="w-full h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-md sm:rounded-lg md:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none mb-1.5 sm:mb-2 md:mb-3 lg:mb-4 text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-[0.825rem]"
+            className="w-full h-16 sm:h-20 md:h-24 lg:h-28 xl:h-32 px-2.5 sm:px-3 md:px-4 py-1.5 sm:py-2 md:py-3 rounded-md sm:rounded-lg md:rounded-xl bg-white/10 backdrop-blur-sm border border-white/20 text-black placeholder:text-black/50 focus:outline-none focus:ring-2 focus:ring-white/50 transition-all resize-none text-[0.65rem] sm:text-[0.7rem] md:text-[0.75rem] lg:text-[0.825rem]"
           />
 
           {/* Input Grid - 2x2 on desktop, stacked on mobile */}
-          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 mb-2 sm:mb-3 md:mb-4 lg:mb-5">
+          <div className="grid grid-cols-2 gap-1.5 sm:gap-2 md:gap-3 lg:gap-4 mt-1 sm:mt-1.5 md:mt-2 lg:mt-2.5">
             <div>
               <input
                 type="text"
@@ -129,57 +129,68 @@ export function Hero() {
             </div>
           </div>
 
-          {/* File Upload Option */}
-          <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3 mb-2 sm:mb-3 md:mb-4 lg:mb-5">
-            <div 
-              className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center flex-shrink-0"
-              style={{
-                backgroundColor: `${accentColor}33`,
-                borderColor: `${accentColor}4d`,
-                borderWidth: '1px',
-                borderStyle: 'solid',
-              }}
-            >
-              <svg
-                className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
-                viewBox="0 0 24 24"
-                fill="none"
-                style={{ color: accentColor }}
-              >
-                <path
-                  d="M12 16V8M8 12L12 8L16 12"
-                  stroke="currentColor"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                />
-              </svg>
-            </div>
-            <span className="text-white/70 text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem]">
-              Attach Job Description (optional)
-            </span>
-          </div>
-
-          {/* CTA Button */}
-          <div className="flex justify-center -mt-1 sm:-mt-2 md:-mt-3 lg:-mt-4">
-            <button
-              className="px-4 sm:px-5 md:px-6 lg:px-8 pt-1.5 pb-2 sm:pt-2 sm:pb-2.5 md:pt-2 md:pb-3 lg:pt-2.5 lg:pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white text-[0.7rem] sm:text-xs md:text-sm lg:text-base font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
-              style={{
-                backgroundColor: accentColor,
-                boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
-              }}
-            >
-              {/* Gradiente azul oscuro */}
+          {/* Bottom Row - File Upload and CTA Button */}
+          <div className="flex items-center justify-between mt-3 sm:mt-4 md:mt-5 relative">
+            {/* File Upload Option */}
+            <div className="flex items-center gap-1.5 sm:gap-2 md:gap-3">
               <div 
-                className="absolute inset-0 pointer-events-none"
+                className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10 rounded-full flex items-center justify-center flex-shrink-0"
                 style={{
-                  background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                  backgroundColor: `${accentColor}33`,
+                  borderColor: `${accentColor}4d`,
+                  borderWidth: '1px',
+                  borderStyle: 'solid',
                 }}
-              ></div>
-              {/* Capa blanca */}
-              <div className="absolute inset-0 bg-white opacity-20 pointer-events-none"></div>
-              <span className="relative z-10">Activate Talent Engine</span>
-            </button>
+              >
+                <svg
+                  className="w-3 h-3 sm:w-4 sm:h-4 md:w-5 md:h-5"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  style={{ color: accentColor }}
+                >
+                  <path
+                    d="M12 16V8M8 12L12 8L16 12"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                  />
+                </svg>
+              </div>
+              <span className="text-white/70 text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem] leading-tight">
+                Attach Job Description<br />(optional)
+              </span>
+            </div>
+
+            {/* CTA Button - Centered */}
+            <div className="absolute left-1/2 -translate-x-1/2">
+              <button
+                className="px-4 sm:px-5 md:px-6 lg:px-8 pt-1.5 pb-2 sm:pt-2 sm:pb-2.5 md:pt-2 md:pb-3 lg:pt-2.5 lg:pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white text-[0.7rem] sm:text-xs md:text-sm lg:text-base font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
+                style={{
+                  backgroundColor: accentColor,
+                  boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
+                }}
+              >
+                {/* Gradiente azul oscuro */}
+                <div 
+                  className="absolute inset-0 pointer-events-none"
+                  style={{
+                    background: 'linear-gradient(315deg, rgba(5,16,37,0.7) 0%, rgba(5,16,37,0) 100%)',
+                  }}
+                ></div>
+                {/* Capa blanca */}
+                <div className="absolute inset-0 bg-white opacity-20 pointer-events-none"></div>
+                <span className="relative z-10">Activate Talent Engine</span>
+              </button>
+            </div>
+
+            {/* Spacer para equilibrar */}
+            <div className="invisible flex items-center gap-1.5 sm:gap-2 md:gap-3">
+              <div className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 lg:w-10 lg:h-10"></div>
+              <span className="text-[0.55rem] sm:text-[0.6rem] md:text-[0.65rem] lg:text-[0.7rem] leading-tight">
+                Attach Job Description<br />(optional)
+              </span>
+            </div>
           </div>
         </div>
       </div>
