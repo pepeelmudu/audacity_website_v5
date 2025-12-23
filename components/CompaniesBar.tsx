@@ -1,6 +1,8 @@
 "use client";
 
 import Image from "next/image";
+import { useIsMobile } from "@/hooks/useIsMobile";
+import { useEffect, useState } from "react";
 
 const companies = [
   { name: "Sony", logo: "/logos/companies/sony_ok_v2.svg" },
@@ -11,7 +13,39 @@ const companies = [
   { name: "Trustpilot", logo: "/logos/companies/trustpilot_ok.svg" },
 ];
 
+// Agrupar logos de 2 en 2 para el carrusel móvil
+const logoPairs = [
+  [companies[0], companies[1]],
+  [companies[2], companies[3]],
+  [companies[4], companies[5]],
+];
+
 export function CompaniesBar() {
+  const isMobile = useIsMobile();
+  const [currentPair, setCurrentPair] = useState(0);
+
+  // Carrusel automático en móvil
+  useEffect(() => {
+    if (!isMobile) return;
+    
+    const interval = setInterval(() => {
+      setCurrentPair((prev) => (prev + 1) % logoPairs.length);
+    }, 3000);
+    
+    return () => clearInterval(interval);
+  }, [isMobile]);
+
+  const getLogoHeight = (company: typeof companies[0]) => {
+    const isSmaller = company.name === "FedEx" || company.name === "Uber" || company.name === "Botto";
+    const isSony = company.name === "Sony";
+    const isOracle = company.name === "Oracle";
+    
+    if (isSony) return "h-[28px] md:h-[42.24px]";
+    if (isOracle) return "h-[34px] md:h-[50.688px]";
+    if (isSmaller) return "h-[22px] md:h-[33.792px]";
+    return "h-[28px] md:h-[42.24px]";
+  };
+
   return (
     <div className="w-full bg-[#030c2f] min-h-[67px] md:min-h-[84px] flex flex-col items-center justify-center py-2 relative">
       {/* Frase fuera del contenedor, justo encima */}
@@ -25,50 +59,65 @@ export function CompaniesBar() {
       </p>
       
       <div className="max-w-6xl mx-auto w-full px-6 md:px-10">
-        {/* Logos */}
-        <div className="flex flex-wrap justify-center items-center gap-12 md:gap-16 md:flex-nowrap">
-          {companies.map((company) => {
-            const isSmaller = company.name === "FedEx" || company.name === "Uber" || company.name === "Botto";
-            const isSony = company.name === "Sony";
-            const isOracle = company.name === "Oracle";
-            let heightClass;
-            if (isSony) {
-              // Sony se mantiene igual: 35.2px, 42.24px
-              heightClass = "h-[35.2px] md:h-[42.24px]";
-            } else if (isOracle) {
-              // Oracle 20% más grande: 35.2px * 1.2 = 42.24px, 42.24px * 1.2 = 50.688px
-              heightClass = "h-[42.24px] md:h-[50.688px]";
-            } else if (isSmaller) {
-              // 10% más grande: 25.6px * 1.1 = 28.16px, 30.72px * 1.1 = 33.792px
-              heightClass = "h-[28.16px] md:h-[33.792px]";
-            } else {
-              // 10% más grande: 32px * 1.1 = 35.2px, 38.4px * 1.1 = 42.24px
-              heightClass = "h-[35.2px] md:h-[42.24px]";
-            }
-            const needsOffset = company.name === "Trustpilot";
-            
-            return (
+        {/* Logos - Carrusel en móvil, todos visibles en desktop */}
+        {isMobile ? (
+          <div className="flex justify-center items-center gap-12 h-[40px] overflow-hidden relative">
+            {logoPairs.map((pair, pairIndex) => (
               <div
-                key={company.name}
-                className="flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300 h-full"
+                key={pairIndex}
+                className={`flex justify-center items-center gap-12 absolute inset-0 transition-opacity duration-700 ease-in-out ${pairIndex === currentPair ? 'opacity-100' : 'opacity-0'}`}
               >
-                <Image
-                  src={company.logo}
-                  alt={`${company.name} logo`}
-                  width={120}
-                  height={48}
-                  className={`${heightClass} w-auto object-contain`}
-                  priority={false}
-                  style={{
-                    filter: 'brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(400%) hue-rotate(100deg) brightness(95%) contrast(90%)',
-                    display: 'block',
-                    transform: needsOffset ? 'translateY(4px)' : 'none',
-                  }}
-                />
+                {pair.map((company) => (
+                  <div
+                    key={company.name}
+                    className="flex items-center justify-center opacity-80"
+                  >
+                    <Image
+                      src={company.logo}
+                      alt={`${company.name} logo`}
+                      width={120}
+                      height={48}
+                      className={`${getLogoHeight(company)} w-auto object-contain`}
+                      priority={false}
+                      style={{
+                        filter: 'brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(400%) hue-rotate(100deg) brightness(95%) contrast(90%)',
+                        display: 'block',
+                        transform: company.name === "Trustpilot" ? 'translateY(4px)' : 'none',
+                      }}
+                    />
+                  </div>
+                ))}
               </div>
-            );
-          })}
-        </div>
+            ))}
+          </div>
+        ) : (
+          <div className="flex justify-center items-center gap-16">
+            {companies.map((company) => {
+              const needsOffset = company.name === "Trustpilot";
+              
+              return (
+                <div
+                  key={company.name}
+                  className="flex items-center justify-center opacity-80 hover:opacity-100 hover:scale-110 transition-all duration-300 h-full"
+                >
+                  <Image
+                    src={company.logo}
+                    alt={`${company.name} logo`}
+                    width={120}
+                    height={48}
+                    className={`${getLogoHeight(company)} w-auto object-contain`}
+                    priority={false}
+                    style={{
+                      filter: 'brightness(0) saturate(100%) invert(85%) sepia(12%) saturate(400%) hue-rotate(100deg) brightness(95%) contrast(90%)',
+                      display: 'block',
+                      transform: needsOffset ? 'translateY(4px)' : 'none',
+                    }}
+                  />
+                </div>
+              );
+            })}
+          </div>
+        )}
       </div>
     </div>
   );

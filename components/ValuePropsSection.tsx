@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useMode } from "@/contexts/ModeContext";
 import { motion } from "framer-motion";
 import { FadeInView, StaggerContainer, StaggerItem } from "./animations";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const valuePropsData = [
   {
@@ -39,6 +40,7 @@ const aCalling = [
 
 export function ValuePropsSection() {
   const { mode } = useMode();
+  const isMobile = useIsMobile();
 
   return (
     <section className="relative w-full">
@@ -88,11 +90,11 @@ export function ValuePropsSection() {
             </div>
 
             {/* Feature Cards Grid */}
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 max-w-[52rem] mx-auto" staggerDelay={0.15}>
+            <StaggerContainer className={`grid gap-5 md:gap-6 mx-auto ${isMobile ? 'grid-cols-1 max-w-[280px]' : 'grid-cols-3 max-w-[52rem]'}`} staggerDelay={0.15}>
               {valuePropsData.map((prop, index) => (
                 <StaggerItem key={index}>
                   <div
-                    className="backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl pt-6 pb-3 px-4 md:pt-8 md:pb-4 md:px-5 hover:-translate-y-1 hover:shadow-2xl transition-transform transition-shadow duration-300 h-full"
+                    className={`backdrop-blur-xl border border-white/20 shadow-lg rounded-2xl pt-6 pb-3 px-4 md:pt-8 md:pb-4 md:px-5 hover:-translate-y-1 hover:shadow-2xl transition-transform transition-shadow duration-300 h-full ${isMobile ? 'aspect-[1/1.3] flex flex-col justify-center' : ''}`}
                     style={{
                       background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
                       boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 20px 40px -10px rgba(0,0,0,0.3)',
@@ -141,7 +143,7 @@ export function ValuePropsSection() {
 
         {/* Middle Section - Image with Quote */}
         <div className="pt-2 pb-12 md:pt-4 md:pb-20">
-          <div className="max-w-3xl mx-auto px-6 md:px-10">
+          <div className={`mx-auto px-6 md:px-10 ${isMobile ? 'max-w-[280px]' : 'max-w-3xl'}`}>
             <FadeInView direction="up" duration={0.8}>
               <div className="relative rounded-2xl overflow-hidden shadow-2xl">
                 <Image
@@ -154,7 +156,7 @@ export function ValuePropsSection() {
                 />
                 {/* Quote Overlay */}
                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/20 to-transparent flex items-center justify-center p-8">
-                  <p className="text-white text-center text-base md:text-lg lg:text-xl font-medium leading-relaxed">
+                  <p className={`text-white text-center font-medium leading-relaxed ${isMobile ? 'text-xs' : 'text-base md:text-lg lg:text-xl'}`}>
                     "Tap into a carefully selected network of top performers who understand the tech of today."
                   </p>
                 </div>
@@ -196,7 +198,7 @@ export function ValuePropsSection() {
             </FadeInView>
 
             {/* Comparison Cards */}
-            <StaggerContainer className="grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 max-w-xl mx-auto mb-10" staggerDelay={0.2}>
+            <StaggerContainer className={`grid grid-cols-1 md:grid-cols-2 gap-5 md:gap-6 mx-auto mb-10 ${isMobile ? 'max-w-[280px]' : 'max-w-xl'}`} staggerDelay={0.2}>
               {/* Opportunities VS Card */}
               <StaggerItem>
                 <div

@@ -2,6 +2,7 @@
 
 import Image from "next/image";
 import { FadeInView, StaggerContainer, StaggerItem } from "./animations";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const steps = [
   {
@@ -52,22 +53,24 @@ const testimonials = [
 ];
 
 export function HowItWorksSection() {
+  const isMobile = useIsMobile();
+
   return (
     <section className="w-full bg-[#a8d5c2] py-12 md:py-20">
-      <div className="max-w-4xl mx-auto px-6 md:px-10">
+      <div className={`mx-auto px-6 md:px-10 ${isMobile ? 'max-w-[280px]' : 'max-w-4xl'}`}>
         {/* How It Works */}
         <FadeInView direction="up">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a2540] mb-8">
+          <h2 className={`font-bold text-[#0a2540] mb-8 ${isMobile ? 'text-xl text-center' : 'text-2xl md:text-3xl lg:text-4xl'}`}>
             How It Works
           </h2>
         </FadeInView>
 
-        <StaggerContainer className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-20" staggerDelay={0.12}>
+        <StaggerContainer className={`grid gap-6 mb-20 ${isMobile ? 'grid-cols-1' : 'grid-cols-2 lg:grid-cols-4'}`} staggerDelay={0.12}>
           {steps.map((step, index) => (
             <StaggerItem key={index}>
-              <div className="flex flex-col group h-full">
+              <div className={`flex flex-col group h-full ${isMobile ? 'items-center text-center' : ''}`}>
                 {/* Icon Box */}
-                <div className="border border-[#0a2540] p-3 mb-3 aspect-square flex items-center justify-center bg-transparent overflow-hidden">
+                <div className="border border-[#0a2540] p-3 mb-3 aspect-square flex items-center justify-center bg-transparent overflow-hidden w-full">
                   <Image
                     src={step.icon}
                     alt={step.title}
@@ -86,15 +89,15 @@ export function HowItWorksSection() {
 
         {/* What Companies Say */}
         <FadeInView direction="up">
-          <h2 className="text-2xl md:text-3xl lg:text-4xl font-bold text-[#0a2540] mb-6">
+          <h2 className={`font-bold text-[#0a2540] mb-6 ${isMobile ? 'text-xl text-center' : 'text-2xl md:text-3xl lg:text-4xl'}`}>
             What Companies Say
           </h2>
         </FadeInView>
 
-        <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6" staggerDelay={0.15}>
+        <StaggerContainer className={`grid gap-4 mb-6 ${isMobile ? 'grid-cols-1' : 'grid-cols-1 md:grid-cols-3'}`} staggerDelay={0.15}>
           {testimonials.map((testimonial, index) => (
             <StaggerItem key={index}>
-              <div className="border border-[#0a2540] overflow-hidden bg-transparent h-full">
+              <div className={`border border-[#0a2540] overflow-hidden bg-transparent h-full ${isMobile ? 'max-w-[240px] mx-auto' : ''}`}>
                 {/* Image */}
                 <div className="aspect-[4/3] relative overflow-hidden">
                   <Image
@@ -111,9 +114,9 @@ export function HowItWorksSection() {
                   <svg className="w-5 h-5 text-[#0a2540] mb-2" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                     <path d="M7 8h10M7 12h6m-3 8l-4-4H5a2 2 0 01-2-2V6a2 2 0 012-2h14a2 2 0 012 2v8a2 2 0 01-2 2h-5l-4 4z" strokeLinecap="round" strokeLinejoin="round" />
                   </svg>
-                  <p className="text-xs text-[#0a2540] font-medium mb-3 leading-relaxed">&ldquo;{testimonial.quote}&rdquo;</p>
-                  <p className="text-sm font-bold text-[#0a2540]">{testimonial.name}</p>
-                  <p className="text-xs text-[#0a2540] font-medium">{testimonial.role}</p>
+                  <p className={`text-[#0a2540] font-medium mb-3 leading-relaxed ${isMobile ? 'text-[10px]' : 'text-xs'}`}>&ldquo;{testimonial.quote}&rdquo;</p>
+                  <p className={`font-bold text-[#0a2540] ${isMobile ? 'text-xs' : 'text-sm'}`}>{testimonial.name}</p>
+                  <p className={`text-[#0a2540] font-medium ${isMobile ? 'text-[10px]' : 'text-xs'}`}>{testimonial.role}</p>
                 </div>
               </div>
             </StaggerItem>
@@ -122,17 +125,17 @@ export function HowItWorksSection() {
 
         {/* Trustpilot */}
         <FadeInView direction="up" delay={0.2}>
-          <div className="flex items-center gap-2 flex-wrap">
-            <span className="text-[#0a2540] font-bold text-sm">Excelent</span>
+          <div className={`flex items-center gap-2 flex-wrap ${isMobile ? 'justify-center' : ''}`}>
+            <span className={`text-[#0a2540] font-bold ${isMobile ? 'text-xs' : 'text-sm'}`}>Excelent</span>
             {/* Stars */}
             <div className="flex gap-0.5">
               {[...Array(5)].map((_, i) => (
-                <svg key={i} className="w-4 h-4 text-[#0a2540]" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
+                <svg key={i} className={`text-[#0a2540] ${isMobile ? 'w-3 h-3' : 'w-4 h-4'}`} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5">
                   <path d="M12 2l3.09 6.26L22 9.27l-5 4.87 1.18 6.88L12 17.77l-6.18 3.25L7 14.14 2 9.27l6.91-1.01L12 2z" />
                 </svg>
               ))}
             </div>
-            <span className="text-[#0a2540] text-xs font-medium">45 reviews on <strong>Trustpilot</strong></span>
+            <span className={`text-[#0a2540] font-medium ${isMobile ? 'text-[10px]' : 'text-xs'}`}>45 reviews on <strong>Trustpilot</strong></span>
           </div>
         </FadeInView>
       </div>

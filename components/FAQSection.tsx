@@ -5,6 +5,7 @@ import { useState } from "react";
 import { useMode } from "@/contexts/ModeContext";
 import { motion } from "framer-motion";
 import { FadeInView, StaggerContainer, StaggerItem } from "./animations";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 const faqs = [
   {
@@ -33,6 +34,7 @@ export function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
   const [contactHover, setContactHover] = useState(false);
   const { mode, accentColor } = useMode();
+  const isMobile = useIsMobile();
 
   const toggleFAQ = (index: number) => {
     setOpenIndex(openIndex === index ? null : index);
@@ -67,9 +69,9 @@ export function FAQSection() {
         </FadeInView>
 
         {/* FAQ and 3D Asset Container */}
-        <div className="flex flex-col lg:flex-row gap-8 lg:gap-12 items-start">
+        <div className={`flex gap-8 lg:gap-12 items-start ${isMobile ? 'flex-col' : 'flex-col lg:flex-row'}`}>
           {/* FAQ Accordion */}
-          <StaggerContainer className="flex-1 space-y-3 max-w-md" staggerDelay={0.1}>
+          <StaggerContainer className={`flex-1 space-y-3 ${isMobile ? 'w-full max-w-[280px] mx-auto' : 'max-w-md'}`} staggerDelay={0.1}>
             {faqs.map((faq, index) => (
               <StaggerItem key={index}>
                 <div
@@ -83,14 +85,14 @@ export function FAQSection() {
                   <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
                   <button
                     onClick={() => toggleFAQ(index)}
-                    className="w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10"
+                    className={`w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className="text-white/70 text-sm">◇</span>
-                      <span className="text-white text-sm font-medium">{faq.question}</span>
+                      <span className={`text-white/70 ${isMobile ? 'text-xs' : 'text-sm'}`}>◇</span>
+                      <span className={`text-white font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>{faq.question}</span>
                     </div>
                     <svg
-                      className={`w-5 h-5 text-white/70 transition-transform duration-300 ${
+                      className={`text-white/70 transition-transform duration-300 ${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${
                         openIndex === index ? 'rotate-180' : ''
                       }`}
                       viewBox="0 0 24 24"
@@ -106,7 +108,7 @@ export function FAQSection() {
                       openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <p className="pl-3 pr-5 pb-4 pt-1 text-white/80 text-xs leading-relaxed">
+                    <p className={`pl-3 pr-5 pb-4 pt-1 text-white/80 leading-relaxed ${isMobile ? 'text-[10px]' : 'text-xs'}`}>
                       {faq.answer}
                     </p>
                   </div>
@@ -115,24 +117,39 @@ export function FAQSection() {
             ))}
           </StaggerContainer>
 
-          {/* 3D Asset */}
-          <FadeInView direction="right" delay={0.3} className="flex-shrink-0 lg:w-[350px] flex items-center justify-center relative lg:ml-12">
-            <Image
-              src={mode === "company" ? "/3d_assets/A/A_low.png" : "/3d_assets/A/A_low_green.png"}
-              alt="Audacity 3D A"
-              width={300}
-              height={400}
-              className="object-contain"
-              style={{
-                filter: 'drop-shadow(0 25px 35px rgba(30, 20, 10, 0.9)) saturate(0.8)',
-              }}
-            />
-          </FadeInView>
+          {/* 3D Asset - En móvil va entre las FAQs y el botón, centrado y más pequeño */}
+          {isMobile ? (
+            <div className="w-full flex justify-center my-4">
+              <Image
+                src={mode === "company" ? "/3d_assets/A/A_low.png" : "/3d_assets/A/A_low_green.png"}
+                alt="Audacity 3D A"
+                width={120}
+                height={160}
+                className="object-contain"
+                style={{
+                  filter: 'drop-shadow(0 15px 25px rgba(30, 20, 10, 0.9)) saturate(0.8)',
+                }}
+              />
+            </div>
+          ) : (
+            <FadeInView direction="right" delay={0.3} className="flex-shrink-0 lg:w-[350px] flex items-center justify-center relative lg:ml-12">
+              <Image
+                src={mode === "company" ? "/3d_assets/A/A_low.png" : "/3d_assets/A/A_low_green.png"}
+                alt="Audacity 3D A"
+                width={300}
+                height={400}
+                className="object-contain"
+                style={{
+                  filter: 'drop-shadow(0 25px 35px rgba(30, 20, 10, 0.9)) saturate(0.8)',
+                }}
+              />
+            </FadeInView>
+          )}
         </div>
 
-        {/* CTA Section - Fixed position */}
-        <FadeInView direction="up" delay={0.1} className="text-center absolute -bottom-4 left-0 right-0">
-          <p className="text-[#a8d5c2] text-lg md:text-xl mb-4">
+        {/* CTA Section - Fixed position en desktop, relativo en móvil */}
+        <FadeInView direction="up" delay={0.1} className={`text-center ${isMobile ? 'mt-4' : 'absolute -bottom-4 left-0 right-0'}`}>
+          <p className={`text-[#a8d5c2] mb-4 ${isMobile ? 'text-base' : 'text-lg md:text-xl'}`}>
             You still have a question? No problem.
           </p>
           <div 

@@ -5,11 +5,18 @@ import { Button } from "@/components/ui/button";
 import { motion } from "framer-motion";
 import Image from "next/image";
 import { useState } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 export function Header() {
   const { mode, setMode, accentColor } = useMode();
   const [companyHover, setCompanyHover] = useState(false);
   const [candidateHover, setCandidateHover] = useState(false);
+  const isMobile = useIsMobile();
+
+  // En móvil, el header se renderiza dentro del Hero
+  if (isMobile) {
+    return null;
+  }
 
   return (
     <header className="absolute top-6 left-0 right-0 z-50">

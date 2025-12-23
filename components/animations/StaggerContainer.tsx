@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface StaggerContainerProps {
   children: ReactNode;
@@ -14,6 +15,13 @@ export function StaggerContainer({
   className = "",
   staggerDelay = 0.1 
 }: StaggerContainerProps) {
+  const isMobile = useIsMobile();
+
+  // En móvil, renderizar sin animación
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}
@@ -36,6 +44,13 @@ interface StaggerItemProps {
 }
 
 export function StaggerItem({ children, className = "" }: StaggerItemProps) {
+  const isMobile = useIsMobile();
+
+  // En móvil, renderizar sin animación
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   return (
     <motion.div
       className={className}

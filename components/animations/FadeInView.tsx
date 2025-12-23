@@ -2,6 +2,7 @@
 
 import { motion } from "framer-motion";
 import { ReactNode } from "react";
+import { useIsMobile } from "@/hooks/useIsMobile";
 
 interface FadeInViewProps {
   children: ReactNode;
@@ -18,6 +19,13 @@ export function FadeInView({
   duration = 0.6,
   className = "" 
 }: FadeInViewProps) {
+  const isMobile = useIsMobile();
+
+  // En móvil, renderizar sin animación
+  if (isMobile) {
+    return <div className={className}>{children}</div>;
+  }
+
   const directions = {
     up: { y: 40, x: 0 },
     down: { y: -40, x: 0 },
