@@ -41,30 +41,16 @@ export function FAQSection() {
   };
 
   return (
-    <section className="relative w-full py-16 md:py-24 overflow-hidden">
-      {/* Background Image - Fixed position within section */}
-      <div 
-        className="absolute inset-0 z-0"
-        style={{
-          backgroundImage: 'url(/bg/BG_BOTTON_1.jpg)',
-          backgroundSize: 'cover',
-          backgroundPosition: 'center top',
-          backgroundAttachment: 'scroll',
-        }}
-      >
-        {/* Dark brown overlay */}
-        <div className="absolute inset-0 bg-[#3d2b1f] opacity-50"></div>
-      </div>
-
+    <section className="relative w-full py-16 md:py-24 overflow-hidden border-t border-gray-300/50" style={{ backgroundColor: '#ECECEC' }}>
       {/* Content */}
       <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 min-h-[600px]">
         {/* Title */}
         <FadeInView direction="up">
           <h2 
-            className="text-3xl md:text-4xl lg:text-5xl text-[#a8d5c2] mb-12"
-            style={{ fontFamily: 'var(--font-beltram-regular)' }}
+            className="text-3xl md:text-4xl lg:text-5xl text-black mb-12"
+            style={{ fontFamily: 'var(--font-aeonik-bold)' }}
           >
-            Frequently asked Questions
+            Frequently Asked Questions
           </h2>
         </FadeInView>
 
@@ -74,25 +60,22 @@ export function FAQSection() {
           <StaggerContainer className={`flex-1 space-y-3 ${isMobile ? 'w-full max-w-[280px] mx-auto' : 'max-w-md'}`} staggerDelay={0.1}>
             {faqs.map((faq, index) => (
               <StaggerItem key={index}>
-                <div
-                  className="overflow-hidden backdrop-blur-xl border border-white/20 relative"
-                  style={{
-                    background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
-                    boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
-                  }}
-                >
-                  {/* White overlay */}
-                  <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
+                <div className="overflow-hidden border border-gray-200 rounded-lg bg-gray-50">
                   <button
                     onClick={() => toggleFAQ(index)}
                     className={`w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10`}
                   >
                     <div className="flex items-center gap-3">
-                      <span className={`text-white/70 ${isMobile ? 'text-xs' : 'text-sm'}`}>◇</span>
-                      <span className={`text-white font-medium ${isMobile ? 'text-xs' : 'text-sm'}`}>{faq.question}</span>
+                      <span className={`text-gray-400 ${isMobile ? 'text-xs' : 'text-sm'}`}>◇</span>
+                      <span 
+                        className={`text-black ${isMobile ? 'text-xs' : 'text-sm'}`}
+                        style={{ fontFamily: 'var(--font-aeonik-medium)' }}
+                      >
+                        {faq.question}
+                      </span>
                     </div>
                     <svg
-                      className={`text-white/70 transition-transform duration-300 ${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${
+                      className={`text-gray-400 transition-transform duration-300 ${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${
                         openIndex === index ? 'rotate-180' : ''
                       }`}
                       viewBox="0 0 24 24"
@@ -108,7 +91,10 @@ export function FAQSection() {
                       openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
                     }`}
                   >
-                    <p className={`pl-3 pr-5 pb-4 pt-1 text-white/80 leading-relaxed ${isMobile ? 'text-[10px]' : 'text-xs'}`}>
+                    <p 
+                      className={`pl-3 pr-5 pb-4 pt-1 text-gray-600 leading-relaxed ${isMobile ? 'text-[10px]' : 'text-xs'}`}
+                      style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+                    >
                       {faq.answer}
                     </p>
                   </div>
@@ -126,9 +112,6 @@ export function FAQSection() {
                 width={120}
                 height={160}
                 className="object-contain"
-                style={{
-                  filter: 'drop-shadow(0 15px 25px rgba(30, 20, 10, 0.9)) saturate(0.8)',
-                }}
               />
             </div>
           ) : (
@@ -139,17 +122,17 @@ export function FAQSection() {
                 width={300}
                 height={400}
                 className="object-contain"
-                style={{
-                  filter: 'drop-shadow(0 25px 35px rgba(30, 20, 10, 0.9)) saturate(0.8)',
-                }}
               />
             </FadeInView>
           )}
         </div>
 
-        {/* CTA Section - Fixed position en desktop, relativo en móvil */}
-        <FadeInView direction="up" delay={0.1} className={`text-center ${isMobile ? 'mt-4' : 'absolute -bottom-4 left-0 right-0'}`}>
-          <p className={`text-[#a8d5c2] mb-4 ${isMobile ? 'text-base' : 'text-lg md:text-xl'}`}>
+        {/* CTA Section */}
+        <FadeInView direction="up" delay={0.1} className={`text-center ${isMobile ? 'mt-4' : 'mt-16'}`}>
+          <p 
+            className={`text-gray-600 mb-4 ${isMobile ? 'text-base' : 'text-lg md:text-xl'}`}
+            style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+          >
             You still have a question? No problem.
           </p>
           <div 
@@ -157,31 +140,11 @@ export function FAQSection() {
             onMouseEnter={() => setContactHover(true)}
             onMouseLeave={() => setContactHover(false)}
           >
-            {/* Animated Glow exterior */}
-            <motion.div
-              className="absolute inset-0 rounded-full"
-              style={{
-                backgroundColor: accentColor,
-                filter: 'blur(12px)',
-              }}
-              animate={{
-                opacity: contactHover ? 0.5 : 0,
-                scale: contactHover ? 1.1 : 1,
-              }}
-              transition={{
-                duration: 0.3,
-                ease: "easeOut",
-              }}
-            />
             <button
-              className="px-8 pt-2.5 pb-3.5 rounded-full backdrop-blur-xl border border-white/20 text-white font-medium hover:scale-105 transition-transform duration-300 relative overflow-hidden"
-              style={{
-                background: 'linear-gradient(315deg, rgba(5,16,37,0.5) 0%, rgba(5,16,37,0) 100%)',
-                boxShadow: 'inset 0 1px 1px 0 rgba(255,255,255,0.1), 0 10px 20px -5px rgba(0,0,0,0.3)',
-              }}
+              className="px-8 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
+              style={{ fontFamily: 'var(--font-aeonik-medium)' }}
             >
-              <div className="absolute inset-0 bg-white opacity-10 pointer-events-none"></div>
-              <span className="relative z-10">Contact Audacity</span>
+              Contact Audacity
             </button>
           </div>
         </FadeInView>
@@ -189,4 +152,3 @@ export function FAQSection() {
     </section>
   );
 }
-

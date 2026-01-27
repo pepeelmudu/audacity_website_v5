@@ -1,40 +1,42 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import localFont from "next/font/local";
 import "./globals.css";
 import { ModeProvider } from "@/contexts/ModeContext";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
-
-const beltramRegular = localFont({
-  src: "../fonts/beltram/BeltramTest-Regular.otf",
-  variable: "--font-beltram-regular",
+// Aeonik Font Family
+const aeonikRegular = localFont({
+  src: "../public/fonts/Aeonik/AeonikTRIAL-Regular.otf",
+  variable: "--font-aeonik-regular",
   display: "swap",
 });
 
-const beltramMedium = localFont({
-  src: "../fonts/beltram/BeltramTest-Medium.otf",
-  variable: "--font-beltram-medium",
+const aeonikMedium = localFont({
+  src: "../public/fonts/Aeonik/AeonikTRIAL-Medium.otf",
+  variable: "--font-aeonik-medium",
   display: "swap",
 });
 
-const beltramBlack = localFont({
-  src: "../fonts/beltram/BeltramTest-Black.otf",
-  variable: "--font-beltram-black",
+const aeonikSemiBold = localFont({
+  src: "../public/fonts/Aeonik/AeonikTRIAL-SemiBold.otf",
+  variable: "--font-aeonik-semibold",
+  display: "swap",
+});
+
+const aeonikBold = localFont({
+  src: "../public/fonts/Aeonik/AeonikTRIAL-Bold.otf",
+  variable: "--font-aeonik-bold",
+  display: "swap",
+});
+
+const aeonikLight = localFont({
+  src: "../public/fonts/Aeonik/AeonikTRIAL-Light.otf",
+  variable: "--font-aeonik-light",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   title: "AUDACITY - AI-Powered Recruiting",
-  description: "Revoluciona el reclutamiento con inteligencia artificial",
+  description: "Find AI-native talent and fill open roles faster",
 };
 
 export default function RootLayout({
@@ -43,9 +45,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="es">
+    <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} ${beltramRegular.variable} ${beltramMedium.variable} ${beltramBlack.variable} antialiased`}
+        className={`${aeonikRegular.variable} ${aeonikMedium.variable} ${aeonikSemiBold.variable} ${aeonikBold.variable} ${aeonikLight.variable} antialiased`}
+        style={{ fontFamily: 'var(--font-aeonik-regular)' }}
       >
         <ModeProvider>
           {children}
