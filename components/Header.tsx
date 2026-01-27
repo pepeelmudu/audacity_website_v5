@@ -46,7 +46,7 @@ export function Header() {
           className="flex items-center flex-1"
         >
           <Image
-            src={mode === "company" ? "/logos/v2/A_mas_texto_v3_orange.svg" : "/logos/v2/A_mas_texto_v3_green.svg"}
+            src={mode === "company" ? "/logos/v2/A_mas_texto_v4_orange.svg" : "/logos/v2/A_mas_texto_v4_green.svg"}
             alt="Audacity"
             width={173}
             height={40}

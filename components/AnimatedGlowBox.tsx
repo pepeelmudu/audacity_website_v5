@@ -16,7 +16,7 @@ export function AnimatedGlowBox({ children }: AnimatedGlowBoxProps) {
 
   return (
     <div 
-      className="max-w-5xl mx-auto mt-8 mb-24 overflow-hidden relative"
+      className="max-w-5xl mx-auto mt-20 mb-24 overflow-hidden relative"
       style={{ 
         borderRadius: '50px',
         backgroundColor: '#ECECEC',
