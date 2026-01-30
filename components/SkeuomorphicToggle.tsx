@@ -19,7 +19,7 @@ export function SkeuomorphicToggle() {
 
   const handleClick = () => {
     const newMode = isCompany ? "candidate" : "company";
-    const newColor = newMode === "company" ? "#ee722f" : "#b5ea4e";
+    const newColor = newMode === "company" ? "#ee722f" : "#8fcb17";
     setFlashColor(newColor);
     setIsFlashing(true);
     setMode(newMode);

@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 import { useMode } from "@/contexts/ModeContext";
 import { motion } from "framer-motion";
@@ -41,110 +40,103 @@ export function FAQSection() {
   };
 
   return (
-    <section className="relative w-full py-16 md:py-24 overflow-hidden border-t border-gray-300/50" style={{ backgroundColor: '#ECECEC' }}>
+    <section className="relative w-full py-16 md:py-24 overflow-hidden" style={{ backgroundColor: '#ECECEC', marginTop: '-180px' }}>
       {/* Content */}
-      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 min-h-[600px]">
+      <div className="relative z-10 max-w-5xl mx-auto px-6 md:px-10 min-h-[500px]">
         {/* Title */}
         <FadeInView direction="up">
           <h2 
-            className="text-3xl md:text-4xl lg:text-5xl text-black mb-12"
+            className="text-3xl md:text-4xl text-black mb-12 text-center"
             style={{ fontFamily: 'var(--font-aeonik-bold)' }}
           >
             Frequently Asked Questions
           </h2>
         </FadeInView>
 
-        {/* FAQ and 3D Asset Container */}
-        <div className={`flex gap-8 lg:gap-12 items-start ${isMobile ? 'flex-col' : 'flex-col lg:flex-row'}`}>
-          {/* FAQ Accordion */}
-          <StaggerContainer className={`flex-1 space-y-3 ${isMobile ? 'w-full max-w-[280px] mx-auto' : 'max-w-md'}`} staggerDelay={0.1}>
-            {faqs.map((faq, index) => (
-              <StaggerItem key={index}>
-                <div className="overflow-hidden border border-gray-200 rounded-lg bg-gray-50">
-                  <button
-                    onClick={() => toggleFAQ(index)}
-                    className={`w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10`}
-                  >
-                    <div className="flex items-center gap-3">
-                      <span className={`text-gray-400 ${isMobile ? 'text-xs' : 'text-sm'}`}>◇</span>
-                      <span 
-                        className={`text-black ${isMobile ? 'text-xs' : 'text-sm'}`}
-                        style={{ fontFamily: 'var(--font-aeonik-medium)' }}
-                      >
-                        {faq.question}
-                      </span>
-                    </div>
-                    <svg
-                      className={`text-gray-400 transition-transform duration-300 ${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${
-                        openIndex === index ? 'rotate-180' : ''
-                      }`}
-                      viewBox="0 0 24 24"
-                      fill="none"
-                      stroke="currentColor"
-                      strokeWidth="2"
+        {/* FAQ Accordion - Centrado */}
+        <StaggerContainer className={`space-y-3 mx-auto ${isMobile ? 'w-full max-w-[280px]' : 'max-w-lg'}`} staggerDelay={0.1}>
+          {faqs.map((faq, index) => (
+            <StaggerItem key={index}>
+              <div className="overflow-hidden border border-gray-200 rounded-lg bg-gray-50">
+                <button
+                  onClick={() => toggleFAQ(index)}
+                  className={`w-full flex items-center justify-between pl-3 pr-5 py-3 text-left transition-all duration-300 relative z-10`}
+                >
+                  <div className="flex items-center gap-3">
+                    <span className={`text-gray-400 ${isMobile ? 'text-xs' : 'text-sm'}`}>◇</span>
+                    <span 
+                      className={`text-black ${isMobile ? 'text-xs' : 'text-sm'}`}
+                      style={{ fontFamily: 'var(--font-aeonik-medium)' }}
                     >
-                      <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
-                    </svg>
-                  </button>
-                  <div
-                    className={`overflow-hidden transition-all duration-300 ease-in-out relative z-10 ${
-                      openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
-                    }`}
-                  >
-                    <p 
-                      className={`pl-3 pr-5 pb-4 pt-1 text-gray-600 leading-relaxed ${isMobile ? 'text-[10px]' : 'text-xs'}`}
-                      style={{ fontFamily: 'var(--font-aeonik-regular)' }}
-                    >
-                      {faq.answer}
-                    </p>
+                      {faq.question}
+                    </span>
                   </div>
+                  <svg
+                    className={`text-gray-400 transition-transform duration-300 ${isMobile ? 'w-4 h-4' : 'w-5 h-5'} ${
+                      openIndex === index ? 'rotate-180' : ''
+                    }`}
+                    viewBox="0 0 24 24"
+                    fill="none"
+                    stroke="currentColor"
+                    strokeWidth="2"
+                  >
+                    <path d="M19 9l-7 7-7-7" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </button>
+                <div
+                  className={`overflow-hidden transition-all duration-300 ease-in-out relative z-10 ${
+                    openIndex === index ? 'max-h-48 opacity-100' : 'max-h-0 opacity-0'
+                  }`}
+                >
+                  <p 
+                    className={`pl-3 pr-5 pb-4 pt-1 text-gray-600 leading-relaxed ${isMobile ? 'text-[10px]' : 'text-xs'}`}
+                    style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+                  >
+                    {faq.answer}
+                  </p>
                 </div>
-              </StaggerItem>
-            ))}
-          </StaggerContainer>
-
-          {/* 3D Asset - En móvil va entre las FAQs y el botón, centrado y más pequeño */}
-          {isMobile ? (
-            <div className="w-full flex justify-center my-4">
-              <Image
-                src={mode === "company" ? "/3d_assets/A/A_low.png" : "/3d_assets/A/A_low_green.png"}
-                alt="Audacity 3D A"
-                width={120}
-                height={160}
-                className="object-contain"
-              />
-            </div>
-          ) : (
-            <FadeInView direction="right" delay={0.3} className="flex-shrink-0 lg:w-[350px] flex items-center justify-center relative lg:ml-12">
-              <Image
-                src={mode === "company" ? "/3d_assets/A/A_low.png" : "/3d_assets/A/A_low_green.png"}
-                alt="Audacity 3D A"
-                width={300}
-                height={400}
-                className="object-contain"
-              />
-            </FadeInView>
-          )}
-        </div>
+              </div>
+            </StaggerItem>
+          ))}
+        </StaggerContainer>
 
         {/* CTA Section */}
-        <FadeInView direction="up" delay={0.1} className={`text-center ${isMobile ? 'mt-4' : 'mt-16'}`}>
+        <FadeInView direction="up" delay={0.1} className={`text-center ${isMobile ? 'mt-8' : 'mt-20'}`}>
           <p 
             className={`text-gray-600 mb-4 ${isMobile ? 'text-base' : 'text-lg md:text-xl'}`}
             style={{ fontFamily: 'var(--font-aeonik-regular)' }}
           >
             You still have a question? No problem.
           </p>
-          <div 
-            className="relative inline-block"
-            onMouseEnter={() => setContactHover(true)}
-            onMouseLeave={() => setContactHover(false)}
-          >
+          <div className="relative inline-block">
             <button
-              className="px-8 py-3 rounded-full bg-black text-white hover:bg-gray-800 transition-colors"
-              style={{ fontFamily: 'var(--font-aeonik-medium)' }}
+              className="relative px-6 py-2.5 text-black text-sm rounded-full cursor-pointer overflow-hidden"
+              style={{ fontFamily: 'var(--font-aeonik-medium)', backgroundColor: '#d4d4d4' }}
             >
-              Contact Audacity
+              {/* Esfera animada con blur */}
+              <motion.div
+                className="absolute pointer-events-none"
+                style={{
+                  width: '120px',
+                  height: '120px',
+                  borderRadius: '50%',
+                  backgroundColor: '#8aade5',
+                  filter: 'blur(35px)',
+                  opacity: 0.5,
+                  top: '50%',
+                  transform: 'translateY(-50%)',
+                }}
+                animate={{
+                  left: ['-30%', '100%', '-30%'],
+                }}
+                transition={{
+                  duration: 12,
+                  repeat: Infinity,
+                  ease: "easeInOut",
+                }}
+              />
+              {/* Texto del botón */}
+              <span className="relative z-10">Contact Audacity →</span>
             </button>
           </div>
         </FadeInView>

@@ -41,12 +41,13 @@ const experts = [
 ];
 
 export function ExpertMatchingSection() {
-  const [hoveredCategory, setHoveredCategory] = useState<string | null>(null);
+  // GTM seleccionado por defecto
+  const [hoveredCategory, setHoveredCategory] = useState<string | null>("gtm");
   const isMobile = useIsMobile();
   const { accentColor } = useMode();
 
   // Color contrario: verde en company, naranja en candidate
-  const contrastColor = accentColor === '#ee722f' ? '#b5ea4e' : '#ee722f';
+  const contrastColor = accentColor === '#ee722f' ? '#8fcb17' : '#ee722f';
 
   if (isMobile) {
     return null; // No mostrar en móvil por complejidad
@@ -56,7 +57,7 @@ export function ExpertMatchingSection() {
     <div className="w-full py-8 mb-12 -mt-[30px]">
       <FadeInView direction="up">
         <p 
-          className="text-center text-gray-600 mb-10 text-sm md:text-base"
+          className="text-center text-gray-600 mb-16 text-sm md:text-base"
           style={{ fontFamily: 'var(--font-aeonik-regular)' }}
         >
           We match you with experts who&apos;ve filled your exact role 50+ times.
@@ -77,9 +78,9 @@ export function ExpertMatchingSection() {
               }`}
               style={{
                 borderColor: hoveredCategory === category.id ? '#8aade5' : undefined,
+                boxShadow: '4px 4px 20px rgba(0, 0, 0, 0.12)',
               }}
               onMouseEnter={() => setHoveredCategory(category.id)}
-              onMouseLeave={() => setHoveredCategory(null)}
             >
               {/* Indicador de estado */}
               <div 
@@ -132,6 +133,7 @@ export function ExpertMatchingSection() {
               className="w-[110%] h-[110%] object-contain"
               style={{ 
                 marginLeft: 'calc(-7% + 20px)',
+                filter: `drop-shadow(0 0 4px ${accentColor}90) drop-shadow(0 0 8px ${accentColor}50) drop-shadow(0 0 14px ${accentColor}30)`,
               }}
             />
           </div>
@@ -149,6 +151,7 @@ export function ExpertMatchingSection() {
               className="w-[110%] h-[110%] object-contain"
               style={{ 
                 marginLeft: 'calc(-7% + 100px)',
+                filter: `drop-shadow(0 0 4px ${accentColor}90) drop-shadow(0 0 8px ${accentColor}50) drop-shadow(0 0 14px ${accentColor}30)`,
               }}
             />
           </div>
@@ -167,6 +170,7 @@ export function ExpertMatchingSection() {
               style={{ 
                 marginLeft: 'calc(-7% + 120px)',
                 marginTop: '-4px',
+                filter: `drop-shadow(0 0 4px ${accentColor}90) drop-shadow(0 0 8px ${accentColor}50) drop-shadow(0 0 14px ${accentColor}30)`,
               }}
             />
           </div>
@@ -200,6 +204,7 @@ export function ExpertMatchingSection() {
                 style={{ 
                   transform: `translateY(${offset}px)`,
                   borderColor: isConnected ? '#8aade5' : undefined,
+                  boxShadow: '4px 4px 20px rgba(0, 0, 0, 0.12)',
                 }}
               >
                 {/* Avatar placeholder */}

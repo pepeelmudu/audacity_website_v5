@@ -4,7 +4,6 @@ import { useMode } from "@/contexts/ModeContext";
 import { Button } from "@/components/ui/button";
 import Image from "next/image";
 import { CompaniesBar } from "@/components/CompaniesBar";
-import { SkeuomorphicToggle } from "@/components/SkeuomorphicToggle";
 import { motion } from "framer-motion";
 import { useState, useRef } from "react";
 // import { AnimatedEye } from "./AnimatedEye"; // Comentado temporalmente
@@ -91,9 +90,9 @@ export function Hero() {
           className={`text-black text-center leading-[1.15] tracking-tight ${isMobile ? 'text-3xl mb-4' : 'text-4xl sm:text-5xl md:text-6xl lg:text-7xl mb-5'}`} 
           style={{ fontFamily: 'var(--font-aeonik-medium)' }}
         >
-          Find AI-native talent and
+          Talent Engine for
           <br />
-          fill open roles faster
+          exceptional humans
         </h1>
 
         {/* Subtitle - Una sola línea, más pequeño */}
@@ -101,13 +100,9 @@ export function Hero() {
           className={`text-gray-500 text-center mb-6 ${isMobile ? 'text-sm' : 'text-base sm:text-lg'}`}
           style={{ fontFamily: 'var(--font-aeonik-regular)' }}
         >
-          The best companies trust Audacity to help them grow and become AI-first organizations
+          Trusted by the hottest companies to build AI-fluent teams
         </p>
 
-        {/* Skeuomorphic Toggle Switch */}
-        <div className="pt-6 pb-4">
-          <SkeuomorphicToggle />
-        </div>
       </div>
       
       {/* Companies Bar - Parte del flujo, no absolute */}
@@ -118,9 +113,9 @@ export function Hero() {
         <div 
           className={`w-full ${isMobile ? 'p-4' : 'p-6 sm:p-8'}`}
           style={{
-            borderRadius: '19px',
+            borderRadius: '23px',
             background: '#ECECEC',
-            boxShadow: '-6px -6px 12px 0 rgba(255, 255, 255, 0.90), 6px 6px 15px 0 rgba(169, 169, 169, 0.90)',
+            boxShadow: '1px 1px 2px 0 rgba(255, 255, 255, 0.30) inset, -1px -1px 2px 0 rgba(174, 174, 174, 0.50) inset, -8px -8px 16px 0 rgba(255, 255, 255, 0.90), 8px 8px 20px 0 rgba(174, 174, 174, 0.90)',
           }}
         >
           {/* Form Title */}
@@ -146,8 +141,14 @@ export function Hero() {
             placeholder={mode === "company" 
               ? "e.g., We're looking for a senior frontend engineer with 5+ years of React experience, strong TypeScript skills, and a passion for building elegant user interfaces..."
               : "e.g., I'm a full-stack developer with 4 years of experience in React and Node.js. I thrive in collaborative environments and I'm looking for a company that values innovation and work-life balance..."}
-            className={`w-full bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all resize-none rounded-lg ${isMobile ? 'h-24 px-3 py-2 text-xs' : 'h-32 px-4 py-3 text-sm'}`}
-            style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+            className={`w-full text-black placeholder:text-gray-400 focus:outline-none transition-all resize-none ${isMobile ? 'h-24 px-3 py-2 text-xs' : 'h-32 px-5 py-4 text-sm'}`}
+            style={{ 
+              fontFamily: 'var(--font-aeonik-regular)',
+              borderRadius: '24px',
+              background: '#F2F2F2',
+              border: 'none',
+              boxShadow: '1px 1px 2px 0 rgba(255, 255, 255, 0.15), -1px -1px 2px 0 rgba(156, 156, 156, 0.25), -6px 6px 12px 0 rgba(156, 156, 156, 0.10) inset, 6px -6px 12px 0 rgba(156, 156, 156, 0.10) inset, -6px -6px 12px 0 rgba(255, 255, 255, 0.45) inset, 6px 6px 15px 0 rgba(156, 156, 156, 0.45) inset',
+            }}
           />
 
           {/* Input Grid */}
@@ -155,28 +156,52 @@ export function Hero() {
             <input
               type="text"
               required
-              className={`w-full bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all rounded-full ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
+              className={`w-full text-black placeholder:text-gray-400 focus:outline-none transition-all ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
               placeholder={mode === "company" ? "Company Name*" : "Full Name*"}
-              style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+              style={{ 
+                fontFamily: 'var(--font-aeonik-regular)',
+                borderRadius: '63px',
+                background: '#F2F2F2',
+                border: 'none',
+                boxShadow: '1px 1px 2px 0 rgba(255, 255, 255, 0.15), -1px -1px 2px 0 rgba(156, 156, 156, 0.25), -5px 5px 10px 0 rgba(156, 156, 156, 0.10) inset, 5px -5px 10px 0 rgba(156, 156, 156, 0.10) inset, -5px -5px 10px 0 rgba(255, 255, 255, 0.45) inset, 5px 5px 13px 0 rgba(156, 156, 156, 0.45) inset',
+              }}
             />
             <input
               type="email"
               required
-              className={`w-full bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all rounded-full ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
+              className={`w-full text-black placeholder:text-gray-400 focus:outline-none transition-all ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
               placeholder="Contact Email*"
-              style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+              style={{ 
+                fontFamily: 'var(--font-aeonik-regular)',
+                borderRadius: '63px',
+                background: '#F2F2F2',
+                border: 'none',
+                boxShadow: '1px 1px 2px 0 rgba(255, 255, 255, 0.15), -1px -1px 2px 0 rgba(156, 156, 156, 0.25), -5px 5px 10px 0 rgba(156, 156, 156, 0.10) inset, 5px -5px 10px 0 rgba(156, 156, 156, 0.10) inset, -5px -5px 10px 0 rgba(255, 255, 255, 0.45) inset, 5px 5px 13px 0 rgba(156, 156, 156, 0.45) inset',
+              }}
             />
             <input
               type="text"
-              className={`w-full bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all rounded-full ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
+              className={`w-full text-black placeholder:text-gray-400 focus:outline-none transition-all ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
               placeholder="Contact Linkedin"
-              style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+              style={{ 
+                fontFamily: 'var(--font-aeonik-regular)',
+                borderRadius: '63px',
+                background: '#F2F2F2',
+                border: 'none',
+                boxShadow: '1px 1px 2px 0 rgba(255, 255, 255, 0.15), -1px -1px 2px 0 rgba(156, 156, 156, 0.25), -5px 5px 10px 0 rgba(156, 156, 156, 0.10) inset, 5px -5px 10px 0 rgba(156, 156, 156, 0.10) inset, -5px -5px 10px 0 rgba(255, 255, 255, 0.45) inset, 5px 5px 13px 0 rgba(156, 156, 156, 0.45) inset',
+              }}
             />
             <input
               type="text"
-              className={`w-full bg-gray-50 border border-gray-200 text-black placeholder:text-gray-400 focus:outline-none focus:ring-2 focus:ring-gray-300 transition-all rounded-full ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
+              className={`w-full text-black placeholder:text-gray-400 focus:outline-none transition-all ${isMobile ? 'px-4 py-2.5 text-xs' : 'px-5 py-3 text-sm'}`}
               placeholder="Contact Telegram"
-              style={{ fontFamily: 'var(--font-aeonik-regular)' }}
+              style={{ 
+                fontFamily: 'var(--font-aeonik-regular)',
+                borderRadius: '63px',
+                background: '#F2F2F2',
+                border: 'none',
+                boxShadow: '1px 1px 2px 0 rgba(255, 255, 255, 0.15), -1px -1px 2px 0 rgba(156, 156, 156, 0.25), -5px 5px 10px 0 rgba(156, 156, 156, 0.10) inset, 5px -5px 10px 0 rgba(156, 156, 156, 0.10) inset, -5px -5px 10px 0 rgba(255, 255, 255, 0.45) inset, 5px 5px 13px 0 rgba(156, 156, 156, 0.45) inset',
+              }}
             />
           </div>
 
